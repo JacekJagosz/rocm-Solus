@@ -1,0 +1,16 @@
+name       : rocm-cmake
+version    : 5.1.0
+release    : 1
+source     :
+    - https://github.com/RadeonOpenCompute/rocm-cmake/archive/refs/tags/rocm-5.1.0.tar.gz : 2eff47b7cf5bd56d465ff3c110eb936d31860df60182a82ba511ba11bbcf23fc
+license    : MIT
+component  : xorg.driver
+summary    : PLEASE FILL ME IN
+description: |
+    PLEASE FILL ME IN
+setup      : |
+    %cmake_ninja
+build      : |
+    %ninja_build
+install    : |
+    %ninja_install

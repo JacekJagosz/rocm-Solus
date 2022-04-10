@@ -1,0 +1,4 @@
+0001-COMGR-changes-needed-for-https-github.com-llvm-llvm-.patch
+0001-Fix-cmake-file-location.patch
+0001-Link-libclang-dynamically.patch
+0001-Change-TargetRegistry.h-path-for-Solus.patch

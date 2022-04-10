@@ -1,0 +1,26 @@
+name       : rocm-compilersupport
+version    : 5.1.0
+release    : 1
+source     :
+    - https://github.com/RadeonOpenCompute/ROCm-CompilerSupport/archive/refs/tags/rocm-5.1.0.tar.gz : 1cdcfe5acb768ef50fb0026d4ee7ba01e615251ad3c27bb2593cdcf8c070a894
+license    : NCSA
+component  : xorg.driver
+clang      : yes
+summary    : PLEASE FILL ME IN
+description: |
+    PLEASE FILL ME IN
+builddeps  :
+    - rocm-device-libs-devel
+setup      : |
+    %apply_patches
+    sed -i -e "/compile_test/d" \
+    -e "/compile_minimal_test/d" \
+    -e "/compile_device_libs_test/d" \
+    -e "/compile_source_with_device_libs_to_bc_test/d" \
+    lib/comgr/test/CMakeLists.txt
+    %cmake -S lib/comgr
+build      : |
+    %make
+    #ninja_build
+install    : |
+    %make_install
