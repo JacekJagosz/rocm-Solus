@@ -18,7 +18,7 @@ setup      : |
     -e "/compile_device_libs_test/d" \
     -e "/compile_source_with_device_libs_to_bc_test/d" \
     lib/comgr/test/CMakeLists.txt
-    %cmake -S lib/comgr
+    %cmake -S lib/comgr -Doptimization=2
 build      : |
     %make
     #ninja_build

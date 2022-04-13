@@ -1,0 +1,26 @@
+From 2e6676ee1f879be02f98bd5f29c6b93c39f97ed9 Mon Sep 17 00:00:00 2001
+From: Mystro256 <alexjnewt@hotmail.com>
+Date: Fri, 11 Feb 2022 12:04:37 -0500
+Subject: [PATCH 2/2] Revert "Changes required for recent merge from trunk:"
+
+This reverts commit cf7eb2d6b4c80ae45510049fac46e3c795ef8cf9.
+---
+ lib/comgr/src/comgr-compiler.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/lib/comgr/src/comgr-compiler.cpp b/lib/comgr/src/comgr-compiler.cpp
+index dfc26c3..ec5b319 100644
+--- a/lib/comgr/src/comgr-compiler.cpp
++++ b/lib/comgr/src/comgr-compiler.cpp
+@@ -481,7 +481,7 @@ static bool executeAssemblerImpl(AssemblerInvocation &Opts,
+         MAB->createObjectWriter(*Out), std::unique_ptr<MCCodeEmitter>(CE), *STI,
+         Opts.RelaxAll, Opts.IncrementalLinkerCompatible,
+         /*DWARFMustBeAtTheEnd*/ true));
+-    Str.get()->initSections(Opts.NoExecStack, *STI);
++    Str.get()->InitSections(Opts.NoExecStack);
+   }
+ 
+   bool Failed = false;
+-- 
+2.31.1
+
