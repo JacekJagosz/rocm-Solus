@@ -4,10 +4,11 @@ release    : 1
 source     :
     - https://github.com/RadeonOpenCompute/rocm-cmake/archive/refs/tags/rocm-5.1.0.tar.gz : 2eff47b7cf5bd56d465ff3c110eb936d31860df60182a82ba511ba11bbcf23fc
 license    : MIT
-component  : xorg.driver
-summary    : PLEASE FILL ME IN
+component  : programming.devel
+homepage   : https://github.com/RadeonOpenCompute
+summary    : ROCm cmake modules
 description: |
-    PLEASE FILL ME IN
+    ROCm cmake modules provides cmake modules for common build tasks needed for the ROCM software stack.
 setup      : |
     %cmake_ninja
 build      : |

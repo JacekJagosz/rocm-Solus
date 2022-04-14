@@ -6,6 +6,7 @@ source     :
 homepage   : https://github.com/RadeonOpenCompute/rocminfo/
 license    : NCSA
 component  : programming.devel
+homepage   : https://github.com/RadeonOpenCompute
 summary    : ROCm Application for Reporting System Info
 description: |
     ROCm Application for Reporting System Info

@@ -6,9 +6,16 @@ source     :
 license    : NCSA
 component  : xorg.driver
 clang      : yes
-summary    : PLEASE FILL ME IN
+homepage   : https://github.com/RadeonOpenCompute
+summary    : ROCm Device Libraries
 description: |
-    PLEASE FILL ME IN
+    This package contains a set of AMD specific device-side language runtime libraries in the form of bit code. Specifically:
+    - Open Compute library controls
+    - Open Compute Math library
+    - Open Compute Kernel library
+    - OpenCL built-in library
+    - HIP built-in library
+    - Heterogeneous Compute built-in library
 setup      : |
     %patch -p1 < $pkgfiles/0001-Use-FHS-compliant-install.patch
     %cmake_ninja

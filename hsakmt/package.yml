@@ -6,9 +6,9 @@ source     :
 license    : NCSA
 component  : xorg.driver
 clang      : yes
-summary    : PLEASE FILL ME IN
+summary    : libhsakmt (HSA thunk) libraries for AMD KFD
 description: |
-    PLEASE FILL ME IN
+    libhsakmt (HSA thunk) libraries for AMD KFD
 builddeps  :
     - pkgconfig(libdrm)
     - pkgconfig(libpci)

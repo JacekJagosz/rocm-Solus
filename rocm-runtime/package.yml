@@ -4,11 +4,12 @@ release    : 1
 source     :
     - https://github.com/RadeonOpenCompute/ROCR-Runtime/archive/refs/tags/rocm-5.1.0.tar.gz : a5f7245059c3d28dbc037e1e6fa3f09084e29147096dd61f7ce5560291ab330f
 license    : NCSA
-component  : xorg.driver
+component  : programming.devel
 clang      : yes
-summary    : PLEASE FILL ME IN
+homepage   : https://github.com/RadeonOpenCompute
+summary    : ROCm Runtime Library
 description: |
-    PLEASE FILL ME IN
+    	The ROCm Runtime Library is a thin, user-mode API that exposes the necessary interfaces to access and interact with graphics hardware driven by the AMDGPU driver set and the AMDKFD kernel driver. Together they enable programmers to directly harness the power of AMD discrete graphics devices by allowing host applications to launch compute kernels directly to the graphics hardware.
 builddeps  :
     - pkgconfig(libdrm)
     - pkgconfig(libelf)

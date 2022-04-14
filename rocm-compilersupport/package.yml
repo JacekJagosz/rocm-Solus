@@ -4,11 +4,12 @@ release    : 1
 source     :
     - https://github.com/RadeonOpenCompute/ROCm-CompilerSupport/archive/refs/tags/rocm-5.1.0.tar.gz : 1cdcfe5acb768ef50fb0026d4ee7ba01e615251ad3c27bb2593cdcf8c070a894
 license    : NCSA
-component  : xorg.driver
+component  : programming.devel
 clang      : yes
-summary    : PLEASE FILL ME IN
+homepage   : https://github.com/RadeonOpenCompute
+summary    : The AMD Code Object Manager (Comgr)
 description: |
-    PLEASE FILL ME IN
+    The AMD Code Object Manager (Comgr) is a shared library which provides operations for creating and inspecting code objects.
 builddeps  :
     - rocm-device-libs-devel
 setup      : |
