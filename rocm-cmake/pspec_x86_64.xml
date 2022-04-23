@@ -1,23 +1,24 @@
 <PISI>
     <Source>
         <Name>rocm-cmake</Name>
+        <Homepage>https://github.com/RadeonOpenCompute</Homepage>
         <Packager>
             <Name>Jacek Jagosz</Name>
             <Email>jacek.jagosz@outlook.com</Email>
         </Packager>
         <License>MIT</License>
-        <PartOf>xorg.driver</PartOf>
-        <Summary xml:lang="en">PLEASE FILL ME IN</Summary>
-        <Description xml:lang="en">PLEASE FILL ME IN
+        <PartOf>programming.devel</PartOf>
+        <Summary xml:lang="en">ROCm cmake modules</Summary>
+        <Description xml:lang="en">ROCm cmake modules provides cmake modules for common build tasks needed for the ROCM software stack.
 </Description>
         <Archive type="binary" sha1sum="79eb0752a961b8e0d15c77d298c97498fbc89c5a">https://getsol.us/sources/README.Solus</Archive>
     </Source>
     <Package>
         <Name>rocm-cmake</Name>
-        <Summary xml:lang="en">PLEASE FILL ME IN</Summary>
-        <Description xml:lang="en">PLEASE FILL ME IN
+        <Summary xml:lang="en">ROCm cmake modules</Summary>
+        <Description xml:lang="en">ROCm cmake modules provides cmake modules for common build tasks needed for the ROCM software stack.
 </Description>
-        <PartOf>xorg.driver</PartOf>
+        <PartOf>programming.devel</PartOf>
         <Files>
             <Path fileType="doc">/usr/share/doc/rocm-cmake/LICENSE</Path>
             <Path fileType="data">/usr/share/rocm/cmake/ROCMAnalyzers.cmake</Path>
@@ -41,7 +42,7 @@
     </Package>
     <History>
         <Update release="1">
-            <Date>2022-04-09</Date>
+            <Date>2022-04-23</Date>
             <Version>5.1.0</Version>
             <Comment>Packaging update</Comment>
             <Name>Jacek Jagosz</Name>

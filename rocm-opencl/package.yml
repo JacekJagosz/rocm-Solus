@@ -6,9 +6,9 @@ source     :
     - https://github.com/RadeonOpenCompute/ROCm-OpenCL-Runtime/archive/refs/tags/rocm-5.1.0.tar.gz : 362d81303048cf7ed5d2f69fb65ed65425bc3da4734fff83e3b8fbdda51b0927
 license    : MIT
 component  : programming.devel
-summary    : PLEASE FILL ME IN
+summary    : OpenCL 2.2 compatible language runtime
 description: |
-    PLEASE FILL ME IN
+    OpenCL 2.2 compatible language runtime
 extract    : False
 builddeps  :
     - libx11-devel

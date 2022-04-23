@@ -7,15 +7,15 @@
         </Packager>
         <License>NCSA</License>
         <PartOf>xorg.driver</PartOf>
-        <Summary xml:lang="en">PLEASE FILL ME IN</Summary>
-        <Description xml:lang="en">PLEASE FILL ME IN
+        <Summary xml:lang="en">libhsakmt (HSA thunk) libraries for AMD KFD</Summary>
+        <Description xml:lang="en">libhsakmt (HSA thunk) libraries for AMD KFD
 </Description>
         <Archive type="binary" sha1sum="79eb0752a961b8e0d15c77d298c97498fbc89c5a">https://getsol.us/sources/README.Solus</Archive>
     </Source>
     <Package>
         <Name>hsakmt</Name>
-        <Summary xml:lang="en">PLEASE FILL ME IN</Summary>
-        <Description xml:lang="en">PLEASE FILL ME IN
+        <Summary xml:lang="en">libhsakmt (HSA thunk) libraries for AMD KFD</Summary>
+        <Description xml:lang="en">libhsakmt (HSA thunk) libraries for AMD KFD
 </Description>
         <PartOf>xorg.driver</PartOf>
         <Files>
@@ -25,7 +25,7 @@
     <Package>
         <Name>hsakmt-devel</Name>
         <Summary xml:lang="en">Development files for hsakmt</Summary>
-        <Description xml:lang="en">PLEASE FILL ME IN
+        <Description xml:lang="en">libhsakmt (HSA thunk) libraries for AMD KFD
 </Description>
         <PartOf>programming.devel</PartOf>
         <RuntimeDependencies>
@@ -44,7 +44,7 @@
     </Package>
     <History>
         <Update release="1">
-            <Date>2022-04-14</Date>
+            <Date>2022-04-23</Date>
             <Version>5.1.0</Version>
             <Comment>Packaging update</Comment>
             <Name>Jacek Jagosz</Name>

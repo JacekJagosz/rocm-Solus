@@ -1,23 +1,24 @@
 <PISI>
     <Source>
         <Name>rocm-runtime</Name>
+        <Homepage>https://github.com/RadeonOpenCompute</Homepage>
         <Packager>
             <Name>Jacek Jagosz</Name>
             <Email>jacek.jagosz@outlook.com</Email>
         </Packager>
         <License>NCSA</License>
-        <PartOf>xorg.driver</PartOf>
-        <Summary xml:lang="en">PLEASE FILL ME IN</Summary>
-        <Description xml:lang="en">PLEASE FILL ME IN
+        <PartOf>programming.devel</PartOf>
+        <Summary xml:lang="en">ROCm Runtime Library</Summary>
+        <Description xml:lang="en">The ROCm Runtime Library is a thin, user-mode API that exposes the necessary interfaces to access and interact with graphics hardware driven by the AMDGPU driver set and the AMDKFD kernel driver. Together they enable programmers to directly harness the power of AMD discrete graphics devices by allowing host applications to launch compute kernels directly to the graphics hardware.
 </Description>
         <Archive type="binary" sha1sum="79eb0752a961b8e0d15c77d298c97498fbc89c5a">https://getsol.us/sources/README.Solus</Archive>
     </Source>
     <Package>
         <Name>rocm-runtime</Name>
-        <Summary xml:lang="en">PLEASE FILL ME IN</Summary>
-        <Description xml:lang="en">PLEASE FILL ME IN
+        <Summary xml:lang="en">ROCm Runtime Library</Summary>
+        <Description xml:lang="en">The ROCm Runtime Library is a thin, user-mode API that exposes the necessary interfaces to access and interact with graphics hardware driven by the AMDGPU driver set and the AMDKFD kernel driver. Together they enable programmers to directly harness the power of AMD discrete graphics devices by allowing host applications to launch compute kernels directly to the graphics hardware.
 </Description>
-        <PartOf>xorg.driver</PartOf>
+        <PartOf>programming.devel</PartOf>
         <Files>
             <Path fileType="data">/usr/hsa/include/hsa</Path>
             <Path fileType="data">/usr/hsa/lib/libhsa-runtime64.so</Path>
@@ -30,7 +31,7 @@
     <Package>
         <Name>rocm-runtime-devel</Name>
         <Summary xml:lang="en">Development files for rocm-runtime</Summary>
-        <Description xml:lang="en">PLEASE FILL ME IN
+        <Description xml:lang="en">The ROCm Runtime Library is a thin, user-mode API that exposes the necessary interfaces to access and interact with graphics hardware driven by the AMDGPU driver set and the AMDKFD kernel driver. Together they enable programmers to directly harness the power of AMD discrete graphics devices by allowing host applications to launch compute kernels directly to the graphics hardware.
 </Description>
         <PartOf>programming.devel</PartOf>
         <RuntimeDependencies>
@@ -59,7 +60,7 @@
     </Package>
     <History>
         <Update release="1">
-            <Date>2022-04-14</Date>
+            <Date>2022-04-23</Date>
             <Version>5.1.0</Version>
             <Comment>Packaging update</Comment>
             <Name>Jacek Jagosz</Name>

@@ -1,21 +1,34 @@
 <PISI>
     <Source>
         <Name>rocm-device-libs</Name>
+        <Homepage>https://github.com/RadeonOpenCompute</Homepage>
         <Packager>
             <Name>Jacek Jagosz</Name>
             <Email>jacek.jagosz@outlook.com</Email>
         </Packager>
         <License>NCSA</License>
         <PartOf>xorg.driver</PartOf>
-        <Summary xml:lang="en">PLEASE FILL ME IN</Summary>
-        <Description xml:lang="en">PLEASE FILL ME IN
+        <Summary xml:lang="en">ROCm Device Libraries</Summary>
+        <Description xml:lang="en">This package contains a set of AMD specific device-side language runtime libraries in the form of bit code. Specifically:
+- Open Compute library controls
+- Open Compute Math library
+- Open Compute Kernel library
+- OpenCL built-in library
+- HIP built-in library
+- Heterogeneous Compute built-in library
 </Description>
         <Archive type="binary" sha1sum="79eb0752a961b8e0d15c77d298c97498fbc89c5a">https://getsol.us/sources/README.Solus</Archive>
     </Source>
     <Package>
         <Name>rocm-device-libs</Name>
-        <Summary xml:lang="en">PLEASE FILL ME IN</Summary>
-        <Description xml:lang="en">PLEASE FILL ME IN
+        <Summary xml:lang="en">ROCm Device Libraries</Summary>
+        <Description xml:lang="en">This package contains a set of AMD specific device-side language runtime libraries in the form of bit code. Specifically:
+- Open Compute library controls
+- Open Compute Math library
+- Open Compute Kernel library
+- OpenCL built-in library
+- HIP built-in library
+- Heterogeneous Compute built-in library
 </Description>
         <PartOf>xorg.driver</PartOf>
         <Files>
@@ -74,7 +87,13 @@
     <Package>
         <Name>rocm-device-libs-devel</Name>
         <Summary xml:lang="en">Development files for rocm-device-libs</Summary>
-        <Description xml:lang="en">PLEASE FILL ME IN
+        <Description xml:lang="en">This package contains a set of AMD specific device-side language runtime libraries in the form of bit code. Specifically:
+- Open Compute library controls
+- Open Compute Math library
+- Open Compute Kernel library
+- OpenCL built-in library
+- HIP built-in library
+- Heterogeneous Compute built-in library
 </Description>
         <PartOf>programming.devel</PartOf>
         <RuntimeDependencies>
@@ -86,7 +105,7 @@
     </Package>
     <History>
         <Update release="1">
-            <Date>2022-04-09</Date>
+            <Date>2022-04-23</Date>
             <Version>5.1.0</Version>
             <Comment>Packaging update</Comment>
             <Name>Jacek Jagosz</Name>

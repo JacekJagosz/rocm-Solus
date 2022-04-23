@@ -1,23 +1,24 @@
 <PISI>
     <Source>
         <Name>rocm-compilersupport</Name>
+        <Homepage>https://github.com/RadeonOpenCompute</Homepage>
         <Packager>
             <Name>Jacek Jagosz</Name>
             <Email>jacek.jagosz@outlook.com</Email>
         </Packager>
         <License>NCSA</License>
-        <PartOf>xorg.driver</PartOf>
-        <Summary xml:lang="en">PLEASE FILL ME IN</Summary>
-        <Description xml:lang="en">PLEASE FILL ME IN
+        <PartOf>programming.devel</PartOf>
+        <Summary xml:lang="en">The AMD Code Object Manager (Comgr)</Summary>
+        <Description xml:lang="en">The AMD Code Object Manager (Comgr) is a shared library which provides operations for creating and inspecting code objects.
 </Description>
         <Archive type="binary" sha1sum="79eb0752a961b8e0d15c77d298c97498fbc89c5a">https://getsol.us/sources/README.Solus</Archive>
     </Source>
     <Package>
         <Name>rocm-compilersupport</Name>
-        <Summary xml:lang="en">PLEASE FILL ME IN</Summary>
-        <Description xml:lang="en">PLEASE FILL ME IN
+        <Summary xml:lang="en">The AMD Code Object Manager (Comgr)</Summary>
+        <Description xml:lang="en">The AMD Code Object Manager (Comgr) is a shared library which provides operations for creating and inspecting code objects.
 </Description>
-        <PartOf>xorg.driver</PartOf>
+        <PartOf>programming.devel</PartOf>
         <Files>
             <Path fileType="library">/usr/lib64/libamd_comgr.so.2</Path>
             <Path fileType="library">/usr/lib64/libamd_comgr.so.2.4.0</Path>
@@ -30,7 +31,7 @@
     <Package>
         <Name>rocm-compilersupport-devel</Name>
         <Summary xml:lang="en">Development files for rocm-compilersupport</Summary>
-        <Description xml:lang="en">PLEASE FILL ME IN
+        <Description xml:lang="en">The AMD Code Object Manager (Comgr) is a shared library which provides operations for creating and inspecting code objects.
 </Description>
         <PartOf>programming.devel</PartOf>
         <RuntimeDependencies>
@@ -47,7 +48,7 @@
     </Package>
     <History>
         <Update release="1">
-            <Date>2022-04-13</Date>
+            <Date>2022-04-23</Date>
             <Version>5.1.0</Version>
             <Comment>Packaging update</Comment>
             <Name>Jacek Jagosz</Name>

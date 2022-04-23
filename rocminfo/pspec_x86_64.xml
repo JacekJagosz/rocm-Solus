@@ -1,7 +1,7 @@
 <PISI>
     <Source>
         <Name>rocminfo</Name>
-        <Homepage>https://github.com/RadeonOpenCompute/rocminfo/</Homepage>
+        <Homepage>https://github.com/RadeonOpenCompute</Homepage>
         <Packager>
             <Name>Jacek Jagosz</Name>
             <Email>jacek.jagosz@outlook.com</Email>
@@ -27,7 +27,7 @@
     </Package>
     <History>
         <Update release="1">
-            <Date>2022-04-14</Date>
+            <Date>2022-04-23</Date>
             <Version>5.1.0</Version>
             <Comment>Packaging update</Comment>
             <Name>Jacek Jagosz</Name>
