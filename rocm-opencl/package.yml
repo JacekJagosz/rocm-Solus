@@ -35,12 +35,12 @@ setup      : |
     %make -C build-rocclr
     cd ..
     cd %workdir%/ROCm-OpenCL-Runtime-rocm-%version%
+    %apply_patches
     %cmake -Wno-dev -B build  \
     -DCMAKE_BUILD_TYPE=Release \
     -DROCM_PATH=%prefix% \
     -DCMAKE_PREFIX_PATH="%workdir%/ROCclr-rocm-%version%;%prefix%" \
-    -DAMD_OPENCL_PATH="%workdir%/ROCm-OpenCL-Runtime-rocm-%version%"
-    #apply_patches
+    -DAMD_OPENCL_PATH="%workdir%/ROCm-OpenCL-Runtime-rocm-%version%" -DBUILD_ICD=OFF
     #cmake -DROCM_PATH=%prefix% -DAMD_OPENCL_PATH=%workdir% -DBUILD_ICD=OFF -DCMAKE_BUILD_TYPE=RelWithDebInfo
 build      : |
     cd %workdir%/ROCm-OpenCL-Runtime-rocm-%version%
@@ -48,3 +48,13 @@ build      : |
 install    : |
     cd %workdir%/ROCm-OpenCL-Runtime-rocm-%version%
     %make_install -C build
+
+    install -D -m 644 config/amdocl64.icd \
+    %installroot%/etc/OpenCL/vendors/amdocl64.icd
+
+    #Avoid file conflicts with opencl-headers package:
+    mkdir -p %installroot%/usr/include/rocm-opencl
+    mv %installroot%/usr/include/CL %installroot%/usr/include/rocm-opencl/CL
+
+    #Avoid file conflicts with clinfo package:
+    mv %installroot%/usr/bin/clinfo %installroot%/usr/bin/rocm-clinfo

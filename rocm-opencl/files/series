@@ -1,5 +1,3 @@
 0001-SWDEV-321118-Use-GNUInstallDirs.patch
-0001-SWDEV-323669-Fix-linux-arch-detection.patch
-0001-SWDEV-323669-Improve-arch-detection.patch
 0002-SWDEV-321116-Allow-disabling-ICD-loader.patch
 0003-SWDEV-321116-Drop-unnecessary-ICD-include.patch

@@ -19,13 +19,9 @@
 </Description>
         <PartOf>programming.devel</PartOf>
         <Files>
-            <Path fileType="executable">/usr/bin/clinfo</Path>
-            <Path fileType="library">/usr/lib/libOpenCL.so.1</Path>
-            <Path fileType="library">/usr/lib/libOpenCL.so.1.2</Path>
-            <Path fileType="library">/usr/lib64/libOpenCL.so.1</Path>
-            <Path fileType="library">/usr/lib64/libOpenCL.so.1.2</Path>
-            <Path fileType="doc">/usr/share/doc/opencl/LICENSE.txt</Path>
-            <Path fileType="doc">/usr/share/doc/rocm-ocl-icd/LICENSE</Path>
+            <Path fileType="config">/etc/OpenCL/vendors/amdocl64.icd</Path>
+            <Path fileType="executable">/usr/bin/rocm-clinfo</Path>
+            <Path fileType="doc">/usr/share/doc/rocm-opencl/LICENSE.txt</Path>
         </Files>
     </Package>
     <Package>
@@ -38,22 +34,19 @@
             <Dependency release="1">rocm-opencl</Dependency>
         </RuntimeDependencies>
         <Files>
-            <Path fileType="header">/usr/include/CL/cl.h</Path>
-            <Path fileType="header">/usr/include/CL/cl.hpp</Path>
-            <Path fileType="header">/usr/include/CL/cl2.hpp</Path>
-            <Path fileType="header">/usr/include/CL/cl_dx9_media_sharing_intel.h</Path>
-            <Path fileType="header">/usr/include/CL/cl_ext.h</Path>
-            <Path fileType="header">/usr/include/CL/cl_ext_intel.h</Path>
-            <Path fileType="header">/usr/include/CL/cl_gl.h</Path>
-            <Path fileType="header">/usr/include/CL/cl_gl_ext.h</Path>
-            <Path fileType="header">/usr/include/CL/cl_icd.h</Path>
-            <Path fileType="header">/usr/include/CL/cl_platform.h</Path>
-            <Path fileType="header">/usr/include/CL/cl_va_api_media_sharing_intel.h</Path>
-            <Path fileType="header">/usr/include/CL/cl_version.h</Path>
-            <Path fileType="header">/usr/include/CL/opencl.h</Path>
-            <Path fileType="library">/usr/lib/libOpenCL.so</Path>
-            <Path fileType="library">/usr/lib/libamdocl64.so</Path>
-            <Path fileType="library">/usr/lib64/libOpenCL.so</Path>
+            <Path fileType="header">/usr/include/rocm-opencl/CL/cl.h</Path>
+            <Path fileType="header">/usr/include/rocm-opencl/CL/cl.hpp</Path>
+            <Path fileType="header">/usr/include/rocm-opencl/CL/cl2.hpp</Path>
+            <Path fileType="header">/usr/include/rocm-opencl/CL/cl_dx9_media_sharing_intel.h</Path>
+            <Path fileType="header">/usr/include/rocm-opencl/CL/cl_ext.h</Path>
+            <Path fileType="header">/usr/include/rocm-opencl/CL/cl_ext_intel.h</Path>
+            <Path fileType="header">/usr/include/rocm-opencl/CL/cl_gl.h</Path>
+            <Path fileType="header">/usr/include/rocm-opencl/CL/cl_gl_ext.h</Path>
+            <Path fileType="header">/usr/include/rocm-opencl/CL/cl_icd.h</Path>
+            <Path fileType="header">/usr/include/rocm-opencl/CL/cl_platform.h</Path>
+            <Path fileType="header">/usr/include/rocm-opencl/CL/cl_va_api_media_sharing_intel.h</Path>
+            <Path fileType="header">/usr/include/rocm-opencl/CL/cl_version.h</Path>
+            <Path fileType="header">/usr/include/rocm-opencl/CL/opencl.h</Path>
             <Path fileType="library">/usr/lib64/libamdocl64.so</Path>
             <Path fileType="library">/usr/lib64/libcltrace.so</Path>
         </Files>
