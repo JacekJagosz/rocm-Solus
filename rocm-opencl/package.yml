@@ -14,21 +14,37 @@ builddeps  :
     - libx11-devel
     - pkgconfig(OpenCL)
     - pkgconfig(gl)
-    - pkgconfig(libhsakmt)
+    - hsakmt-devel
     - rocm-cmake
     - rocm-runtime-devel
     - rocm-compilersupport
     - rocm-device-libs-devel
 setup      : |
-    mkdir temp
+    #mkdir temp
     ls -ltra $sources
-    #tar -xvzf $sources/rocm-5.1.0.tar.gz -C temp --strip-components=1
+    #tar -xvzf $sources/rocm-5.1.0.tar.gz.1 -C temp --strip-components=1
     #cp -r temp/khronos/headers/opencl2.2 .
     #rm -rf temp
-    #tar -xvzf $sources/rocm-5.1.0.tar.gz.1 -C . --strip-components=1
-    %apply_patches
-    %cmake_ninja
+    #tar -xvzf $sources/rocm-5.1.0.tar.gz -C . --strip-components=1
+    tar -xvzf $sources/rocm-5.1.0.tar.gz
+    tar -xvzf $sources/rocm-5.1.0.tar.gz.1
+    ls -ltra
+    cd ROCclr-rocm-%version%
+    ls -ltra
+    %cmake -Wno-dev -B build-rocclr -DAMD_OPENCL_PATH="%workdir%/ROCm-OpenCL-Runtime-rocm-%version%"
+    %make -C build-rocclr
+    cd ..
+    cd %workdir%/ROCm-OpenCL-Runtime-rocm-%version%
+    %cmake -Wno-dev -B build  \
+    -DCMAKE_BUILD_TYPE=Release \
+    -DROCM_PATH=%prefix% \
+    -DCMAKE_PREFIX_PATH="%workdir%/ROCclr-rocm-%version%;%prefix%" \
+    -DAMD_OPENCL_PATH="%workdir%/ROCm-OpenCL-Runtime-rocm-%version%"
+    #apply_patches
+    #cmake -DROCM_PATH=%prefix% -DAMD_OPENCL_PATH=%workdir% -DBUILD_ICD=OFF -DCMAKE_BUILD_TYPE=RelWithDebInfo
 build      : |
-    %ninja_build
+    cd %workdir%/ROCm-OpenCL-Runtime-rocm-%version%
+    %make -C build
 install    : |
-    %ninja_install
+    cd %workdir%/ROCm-OpenCL-Runtime-rocm-%version%
+    %make_install -C build
