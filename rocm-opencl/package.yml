@@ -1,0 +1,34 @@
+name       : rocm-opencl
+version    : 5.1.0
+release    : 1
+source     :
+    - https://github.com/ROCm-Developer-Tools/ROCclr/archive/refs/tags/rocm-5.1.0.tar.gz : f4f265604b534795a275af902b2c814f416434d9c9e16db81b3ed5d062187dfa
+    - https://github.com/RadeonOpenCompute/ROCm-OpenCL-Runtime/archive/refs/tags/rocm-5.1.0.tar.gz : 362d81303048cf7ed5d2f69fb65ed65425bc3da4734fff83e3b8fbdda51b0927
+license    : MIT
+component  : programming.devel
+summary    : PLEASE FILL ME IN
+description: |
+    PLEASE FILL ME IN
+extract    : False
+builddeps  :
+    - libx11-devel
+    - pkgconfig(OpenCL)
+    - pkgconfig(gl)
+    - pkgconfig(libhsakmt)
+    - rocm-cmake
+    - rocm-runtime-devel
+    - rocm-compilersupport
+    - rocm-device-libs-devel
+setup      : |
+    mkdir temp
+    ls -ltra $sources
+    #tar -xvzf $sources/rocm-5.1.0.tar.gz -C temp --strip-components=1
+    #cp -r temp/khronos/headers/opencl2.2 .
+    #rm -rf temp
+    #tar -xvzf $sources/rocm-5.1.0.tar.gz.1 -C . --strip-components=1
+    %apply_patches
+    %cmake_ninja
+build      : |
+    %ninja_build
+install    : |
+    %ninja_install
