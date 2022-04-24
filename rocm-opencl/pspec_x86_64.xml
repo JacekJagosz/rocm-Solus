@@ -7,15 +7,15 @@
         </Packager>
         <License>MIT</License>
         <PartOf>programming.devel</PartOf>
-        <Summary xml:lang="en">PLEASE FILL ME IN</Summary>
-        <Description xml:lang="en">PLEASE FILL ME IN
+        <Summary xml:lang="en">OpenCL 2.2 compatible language runtime</Summary>
+        <Description xml:lang="en">OpenCL 2.2 compatible language runtime
 </Description>
         <Archive type="binary" sha1sum="79eb0752a961b8e0d15c77d298c97498fbc89c5a">https://getsol.us/sources/README.Solus</Archive>
     </Source>
     <Package>
         <Name>rocm-opencl</Name>
-        <Summary xml:lang="en">PLEASE FILL ME IN</Summary>
-        <Description xml:lang="en">PLEASE FILL ME IN
+        <Summary xml:lang="en">OpenCL 2.2 compatible language runtime</Summary>
+        <Description xml:lang="en">OpenCL 2.2 compatible language runtime
 </Description>
         <PartOf>programming.devel</PartOf>
         <Files>
@@ -27,7 +27,7 @@
     <Package>
         <Name>rocm-opencl-devel</Name>
         <Summary xml:lang="en">Development files for rocm-opencl</Summary>
-        <Description xml:lang="en">PLEASE FILL ME IN
+        <Description xml:lang="en">OpenCL 2.2 compatible language runtime
 </Description>
         <PartOf>programming.devel</PartOf>
         <RuntimeDependencies>
@@ -53,7 +53,7 @@
     </Package>
     <History>
         <Update release="1">
-            <Date>2022-04-23</Date>
+            <Date>2022-04-24</Date>
             <Version>5.1.0</Version>
             <Comment>Packaging update</Comment>
             <Name>Jacek Jagosz</Name>

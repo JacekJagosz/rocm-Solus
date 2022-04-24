@@ -12,6 +12,7 @@ description: |
 extract    : False
 builddeps  :
     - libx11-devel
+    - pkgconfig(d3d)
     - pkgconfig(OpenCL)
     - pkgconfig(gl)
     - hsakmt-devel
@@ -38,7 +39,7 @@ setup      : |
     %apply_patches
     %cmake -Wno-dev -B build  \
     -DCMAKE_BUILD_TYPE=Release \
-    -DROCM_PATH=%prefix% \
+    -DROCM_PATH=%PREFIX% \
     -DCMAKE_PREFIX_PATH="%workdir%/ROCclr-rocm-%version%;%prefix%" \
     -DAMD_OPENCL_PATH="%workdir%/ROCm-OpenCL-Runtime-rocm-%version%" -DBUILD_ICD=OFF
     #cmake -DROCM_PATH=%prefix% -DAMD_OPENCL_PATH=%workdir% -DBUILD_ICD=OFF -DCMAKE_BUILD_TYPE=RelWithDebInfo
