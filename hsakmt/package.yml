@@ -12,7 +12,7 @@ description: |
 builddeps  :
     - pkgconfig(libdrm)
     - pkgconfig(libpci)
-    - numactl-devel
+    - pkgconfig(numa)
 setup      : |
     %cmake_ninja
 build      : |

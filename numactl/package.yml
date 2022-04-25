@@ -1,6 +1,6 @@
 name       : numactl
 version    : 2.0.14
-release    : 2
+release    : 1
 source     :
     - https://github.com/numactl/numactl/archive/v2.0.14.tar.gz : 1ee27abd07ff6ba140aaf9bc6379b37825e54496e01d6f7343330cf1a4487035
 homepage   : https://github.com/numactl/numactl

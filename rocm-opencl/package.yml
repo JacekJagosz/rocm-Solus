@@ -12,29 +12,28 @@ description: |
     OpenCL 2.2 compatible language runtime
 extract    : False
 builddeps  :
-    - libx11-devel
-    - pkgconfig(d3d)
     - pkgconfig(OpenCL)
+    - pkgconfig(d3d)
     - pkgconfig(gl)
+    - pkgconfig(x11-xcb)
     - hsakmt-devel
     - rocm-cmake
-    - rocm-runtime-devel
     - rocm-compilersupport
     - rocm-device-libs-devel
+    - rocm-runtime-devel
 setup      : |
-    ls -ltra $sources
     tar -xvzf $sources/rocm-5.1.0.tar.gz
     tar -xvzf $sources/rocm-5.1.0.tar.gz.1
-    ls -ltra
-    cd ROCclr-rocm-%version%
+    pushd ROCclr-rocm-%version%
     %patch -p1 < $pkgfiles/0001-enable-gfx800.patch
+    %patch -p1 < $pkgfiles/0001-Allow-ROCclr-to-be-built-standalone.patch
     sed -i "s/STATIC/SHARED/" cmake/ROCclr.cmake
     echo "set_target_properties(rocclr PROPERTIES VERSION 5.1.0 SOVERSION 5.1)" \
     >> cmake/ROCclr.cmake
     %cmake \
         -DAMD_OPENCL_PATH="%workdir%/ROCm-OpenCL-Runtime-rocm-%version%"
-    cd ..
-    cd ROCm-OpenCL-Runtime-rocm-%version%
+    popd
+    pushd ROCm-OpenCL-Runtime-rocm-%version%
     ls -d khronos/icd/* | grep -v loader | xargs rm -r
     ls -d khronos/icd/loader/* | grep -v icd_dispatch.h | xargs rm -r
     ls -d khronos/headers/* | grep -v opencl2.2 | xargs rm -r
@@ -47,23 +46,20 @@ setup      : |
         -DROCCLR_PATH="%workdir%/ROCclr-rocm-%version%" \
         -DAMD_OPENCL_PATH="%workdir%/ROCm-OpenCL-Runtime-rocm-%version%" -DBUILD_ICD=OFF
 build      : |
-    cd ROCclr-rocm-%version%
+    pushd ROCclr-rocm-%version%
     %make
-    cd ..
-    cd ROCm-OpenCL-Runtime-rocm-%version%
+    popd
+    pushd ROCm-OpenCL-Runtime-rocm-%version%
     %make
 install    : |
-    cd ROCclr-rocm-%version%
-    #make_install #not sure why it doesn't work
-    ls -ltra
-    install -D -m 644 librocclr.so.5.1 %installroot%%libdir%/librocclr.so.5.1
-    install -D -m 644 librocclr.so.5.1.0 %installroot%%libdir%/librocclr.so.5.1.0
-    install -D -m 644 librocclr.so %installroot%%libdir%/librocclr.so
-    cd ..
-    cd ROCm-OpenCL-Runtime-rocm-%version%
+    pushd ROCclr-rocm-%version%
     %make_install
 
-    install -D -m 644 config/amdocl64.icd \
+    popd
+    pushd ROCm-OpenCL-Runtime-rocm-%version%
+    %make_install
+
+    install -Dm00644 config/amdocl64.icd \
     %installroot%/etc/OpenCL/vendors/amdocl64.icd
 
     #Avoid file conflicts with opencl-headers package:
@@ -71,11 +67,11 @@ install    : |
     mv %installroot%/usr/include/CL %installroot%/usr/include/rocm-opencl/CL
 
     #CMake excludes installing this for some reason
-    install -m 644 khronos/headers/opencl2.2/CL/cl_egl.h \
+    install -Dm00644 khronos/headers/opencl2.2/CL/cl_egl.h \
         %installroot%/usr/include/rocm-opencl/CL
 
     #Install bundled khronos icd header that hip needs:
-    install -D -m 644 khronos/icd/loader/icd_dispatch.h \
+    install -Dm00644 khronos/icd/loader/icd_dispatch.h \
         %installroot%/usr/include/rocm-opencl/icd/loader/icd_dispatch.h
 
     #Avoid file conflicts with clinfo package:

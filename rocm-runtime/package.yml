@@ -13,8 +13,8 @@ description: |
 builddeps  :
     - pkgconfig(libdrm)
     - pkgconfig(libelf)
-    - hsakmt-devel
-    - numactl-devel
+    - pkgconfig(libhsakmt)
+    - pkgconfig(numa)
     - rocm-device-libs-devel
     - vim
 setup      : |
