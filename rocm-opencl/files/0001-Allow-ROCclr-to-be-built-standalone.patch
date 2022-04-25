@@ -1,0 +1,111 @@
+From 45f43db31e3d9b00897cf4ca029c8e5f1ee5e3ee Mon Sep 17 00:00:00 2001
+From: Jeremy Newton <alexjnewt@hotmail.com>
+Date: Wed, 20 Apr 2022 00:24:06 -0400
+Subject: [PATCH] Allow ROCclr to be built standalone
+
+The OpenCL sources are still required, but this patch allows ROCclr to be
+built, installed, and packaged independently.
+
+While this isn't the most correct way of implementing this, it is the least
+disruptive and least likely to break against upstream code (smallest delta
+and easy to rebase). A proper upstreamable fix would require someone
+with better cmake skill to work with upstream.
+
+An ideal upstream solution would require rework across hipamd, ROCm OpenCL,
+and ROCclr, along with an understanding of all three code bases including
+the PAL (used on Windows) backend's considerations and design constraints.
+---
+ CMakeLists.txt                | 37 +++++++++++++++++++++++++++++++----
+ cmake/ROCclr.cmake.in         | 10 ++++++++++
+ cmake/ROCclr.cmake.install.in | 15 ++++++++++++++
+ 3 files changed, 58 insertions(+), 4 deletions(-)
+ create mode 100644 cmake/ROCclr.cmake.in
+ create mode 100644 cmake/ROCclr.cmake.install.in
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 29ed85f8..7916da54 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -22,9 +22,38 @@ cmake_minimum_required(VERSION 3.5)
+ 
+ project(ROCclr)
+ 
+-if (${CMAKE_SOURCE_DIR} STREQUAL ${CMAKE_CURRENT_SOURCE_DIR})
+-  message(AUTHOR_WARNING "ROCclr is being built as a standalone project. This isn't supported anymore.")
+-endif()
+-
+ list(APPEND CMAKE_MODULE_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cmake)
+ include(ROCclr)
++
++include(GNUInstallDirs)
++
++install( TARGETS rocclr
++  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
++
++install (
++   DIRECTORY
++      "${AMD_OPENCL_INCLUDE_DIR}/../../../../amdocl"
++      "${CMAKE_CURRENT_SOURCE_DIR}/include"
++      "${CMAKE_CURRENT_SOURCE_DIR}/elf"
++      "${CMAKE_CURRENT_SOURCE_DIR}/utils"
++      "${CMAKE_CURRENT_SOURCE_DIR}/platform"
++      "${CMAKE_CURRENT_SOURCE_DIR}/thread"
++      "${CMAKE_CURRENT_SOURCE_DIR}/os"
++      "${CMAKE_CURRENT_SOURCE_DIR}/device"
++   DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/rocclr
++   FILES_MATCHING PATTERN "*.h*")
++
++#Create module prior to install, useful if packaging rocclr and opencl together
++configure_file("cmake/ROCclr.cmake.in"
++  "${CMAKE_CURRENT_BINARY_DIR}/ROCclr.cmake"
++  @ONLY)
++
++#Create a module to be installed, i.e. building with rocclr post "make install"
++configure_file("cmake/ROCclr.cmake.install.in"
++  "${CMAKE_CURRENT_BINARY_DIR}/ROCclr.cmake.install"
++  @ONLY)
++
++install(FILES
++  "${CMAKE_CURRENT_BINARY_DIR}/ROCclr.cmake.install"
++  DESTINATION "${CMAKE_INSTALL_DATADIR}/cmake/Modules"
++  RENAME "ROCclr.cmake")
+diff --git a/cmake/ROCclr.cmake.in b/cmake/ROCclr.cmake.in
+new file mode 100644
+index 00000000..be10b5c8
+--- /dev/null
++++ b/cmake/ROCclr.cmake.in
+@@ -0,0 +1,10 @@
++link_directories(PUBLIC "@CMAKE_CURRENT_BINARY_DIR@")
++
++include_directories(
++    @AMD_OPENCL_INCLUDE_DIRS@
++    @CMAKE_CURRENT_SOURCE_DIR@
++    @CMAKE_CURRENT_SOURCE_DIR@/include
++    @CMAKE_CURRENT_SOURCE_DIR@/elf)
++
++#Taken from elf/test/CMakeLists.txt:
++add_definitions(-DUSE_COMGR_LIBRARY -DCOMGR_DYN_DLL -DWITH_LIGHTNING_COMPILER)
+diff --git a/cmake/ROCclr.cmake.install.in b/cmake/ROCclr.cmake.install.in
+new file mode 100644
+index 00000000..89160eb3
+--- /dev/null
++++ b/cmake/ROCclr.cmake.install.in
+@@ -0,0 +1,15 @@
++set(ROCCLR_INCLUDE_DIR "@CMAKE_INSTALL_FULL_INCLUDEDIR@/rocclr/include" CACHE STRING "ROCclr include directory")
++set(AMD_OPENCL_INCLUDE_DIR "@CMAKE_INSTALL_FULL_INCLUDEDIR@/CL" CACHE STRING "OpenCL include directory")
++set(AMDOCL_INCLUDE_DIR "@CMAKE_INSTALL_FULL_INCLUDEDIR@/rocclr/amdocl" CACHE STRING "AMDOCL include directory")
++link_directories(PUBLIC "@CMAKE_INSTALL_FULL_LIBDIR@")
++
++include_directories(
++    ${AMD_OPENCL_INCLUDE_DIR}/..
++    ${AMDOCL_INCLUDE_DIR}
++    ${AMDOCL_INCLUDE_DIR}/..
++    ${ROCCLR_INCLUDE_DIR}
++    ${ROCCLR_INCLUDE_DIR}/..
++    ${ROCCLR_INCLUDE_DIR}/../elf)
++
++#Needed by elf/test/*:
++add_definitions(-DUSE_COMGR_LIBRARY -DCOMGR_DYN_DLL -DWITH_LIGHTNING_COMPILER)
+-- 
+2.34.1
+

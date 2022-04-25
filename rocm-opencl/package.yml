@@ -28,6 +28,7 @@ setup      : |
     ls -ltra
     cd ROCclr-rocm-%version%
     %patch -p1 < $pkgfiles/0001-enable-gfx800.patch
+    %patch -p1 < $pkgfiles/0001-Allow-ROCclr-to-be-built-standalone.patch
     sed -i "s/STATIC/SHARED/" cmake/ROCclr.cmake
     echo "set_target_properties(rocclr PROPERTIES VERSION 5.1.0 SOVERSION 5.1)" \
     >> cmake/ROCclr.cmake
@@ -54,11 +55,9 @@ build      : |
     %make
 install    : |
     cd ROCclr-rocm-%version%
-    #make_install #not sure why it doesn't work
+    %make_install
     ls -ltra
-    install -D -m 644 librocclr.so.5.1 %installroot%%libdir%/librocclr.so.5.1
-    install -D -m 644 librocclr.so.5.1.0 %installroot%%libdir%/librocclr.so.5.1.0
-    install -D -m 644 librocclr.so %installroot%%libdir%/librocclr.so
+
     cd ..
     cd ROCm-OpenCL-Runtime-rocm-%version%
     %make_install
