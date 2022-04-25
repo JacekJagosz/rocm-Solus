@@ -1,0 +1,62 @@
+name       : rocm-hip
+version    : 5.1.0
+release    : 1
+source     :
+    - https://github.com/ROCm-Developer-Tools/ROCclr/archive/refs/tags/rocm-5.1.0.tar.gz : f4f265604b534795a275af902b2c814f416434d9c9e16db81b3ed5d062187dfa
+    - https://github.com/RadeonOpenCompute/ROCm-OpenCL-Runtime/archive/refs/tags/rocm-5.1.0.tar.gz : 362d81303048cf7ed5d2f69fb65ed65425bc3da4734fff83e3b8fbdda51b0927
+    - https://github.com/ROCm-Developer-Tools/hipamd/archive/refs/tags/rocm-5.1.0.tar.gz : 77984854bfe00f938353fe4c7604d09967eaf5c609d05f1e6423d3c3dea86e61
+    - https://github.com/ROCm-Developer-Tools/HIP/archive/refs/tags/rocm-5.1.0.tar.gz : 47e542183699f4005c48631d96f6a1fbdf27e07ad3402ccd7b5f707c2c602266
+license    : MIT
+component  : programming.devel
+clang      : yes
+summary    : AMD ROCm HIP
+description: |
+    HIP is a C++ Runtime API and Kernel Language that allows developers to create portable applications for AMD and NVIDIA GPUs from single source code.
+extract    : False
+builddeps  :
+    - libx11-devel
+    - pkgconfig(d3d)
+    - pkgconfig(OpenCL)
+    - pkgconfig(gl)
+    - hsakmt-devel
+    - rocm-cmake
+    - rocm-runtime-devel
+    - rocm-compilersupport
+    - rocm-device-libs-devel
+environment: |
+    export HIP_CLANG_PATH="/usr/bin"
+setup      : |
+    ls -ltra $sources
+    tar -xvzf $sources/rocm-5.1.0.tar.gz
+    tar -xvzf $sources/rocm-5.1.0.tar.gz.1
+    tar -xvzf $sources/rocm-5.1.0.tar.gz.2
+    tar -xvzf $sources/rocm-5.1.0.tar.gz.3
+    ls -ltra
+    cd ROCm-OpenCL-Runtime-rocm-%version%
+    ls -d khronos/headers/* | grep -v opencl2.2 | xargs rm -r
+    ls -d khronos/icd/* | grep -v loader | xargs rm -r
+    ls -d khronos/icd/loader/* | grep -v icd_dispatch.h | xargs rm -r
+    cd ..
+    cd hipamd-rocm-%version%
+    %apply_patches
+    sed -i "s/\(cmake DESTINATION \)./\1\${LIB_INSTALL_DIR}/" CMakeLists.txt
+    sed -i "/CMAKE_INSTALL_RPATH/d" CMakeLists.txt
+    export HIP_CLANG_PATH="/usr/bin"
+    mkdir build
+    cd build
+    %cmake -S.. -B. \
+        -DHIP_COMMON_DIR=%workdir%/HIP-rocm-%version% \
+        -DAMD_OPENCL_PATH=%workdir%/ROCm-OpenCL-Runtime-rocm-%version% \
+        -DROCCLR_PATH=%workdir%/ROCclr-rocm-%version% \
+        -DHIP_COMPILER=clang \
+        -DCMAKE_BUILD_TYPE=RelWithDebInfo
+build      : |
+    cd hipamd-rocm-%version%/build
+    %make
+install    : |
+    cd hipamd-rocm-%version%/build
+    %make_install
+
+    mv %installroot%%PREFIX%/lib %installroot%%libdir%
+    sed -i "s|lib\(/libamdhip64.so\)|lib64\1|" \
+        %installroot%%libdir%/cmake/hip*/*.cmake
