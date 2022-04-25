@@ -6,6 +6,7 @@ source     :
 homepage   : https://github.com/RadeonOpenCompute/rocminfo/
 license    : NCSA
 component  : programming.devel
+clang      : yes
 homepage   : https://github.com/RadeonOpenCompute
 summary    : ROCm Application for Reporting System Info
 description: |
@@ -14,7 +15,7 @@ builddeps  :
     - rocm-runtime-devel
 setup      : |
     %apply_patches
-    %cmake_ninja -DROCM_DIR="/usr"
+    %cmake_ninja -DROCM_DIR=%PREFIX%
 build      : |
     %ninja_build
 install    : |

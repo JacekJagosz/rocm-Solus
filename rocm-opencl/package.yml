@@ -6,6 +6,7 @@ source     :
     - https://github.com/RadeonOpenCompute/ROCm-OpenCL-Runtime/archive/refs/tags/rocm-5.1.0.tar.gz : 362d81303048cf7ed5d2f69fb65ed65425bc3da4734fff83e3b8fbdda51b0927
 license    : MIT
 component  : programming.devel
+clang      : yes
 summary    : OpenCL 2.0 compatible language runtime
 description: |
     OpenCL 2.0 compatible language runtime
@@ -25,21 +26,24 @@ setup      : |
     tar -xvzf $sources/rocm-5.1.0.tar.gz
     tar -xvzf $sources/rocm-5.1.0.tar.gz.1
     ls -ltra
+    cd ROCclr-rocm-%version%
+    %patch -p1 < $pkgfiles/0001-enable-gfx800.patch
+    cd ..
     cd ROCm-OpenCL-Runtime-rocm-%version%
     ls -d khronos/headers/* | grep -v opencl2.2 | xargs rm -r
     ls -d khronos/icd/* | grep -v loader | xargs rm -r
     ls -d khronos/icd/loader/* | grep -v icd_dispatch.h | xargs rm -r
     %apply_patches
     %cmake -Wno-dev -B build  \
-    -DCMAKE_BUILD_TYPE=Release \
-    -DROCM_PATH=%PREFIX% \
-    -DCMAKE_PREFIX_PATH="%workdir%/ROCclr-rocm-%version%;%prefix%" \
-    -DAMD_OPENCL_PATH="%workdir%/ROCm-OpenCL-Runtime-rocm-%version%" -DBUILD_ICD=OFF
+        -DCMAKE_BUILD_TYPE=Release \
+        -DROCM_PATH=%PREFIX% \
+        -DCMAKE_PREFIX_PATH="%workdir%/ROCclr-rocm-%version%;%prefix%" \
+        -DAMD_OPENCL_PATH="%workdir%/ROCm-OpenCL-Runtime-rocm-%version%" -DBUILD_ICD=OFF
 build      : |
-    cd %workdir%/ROCm-OpenCL-Runtime-rocm-%version%
+    cd ROCm-OpenCL-Runtime-rocm-%version%
     %make -C build
 install    : |
-    cd %workdir%/ROCm-OpenCL-Runtime-rocm-%version%
+    cd ROCm-OpenCL-Runtime-rocm-%version%
     %make_install -C build
 
     install -D -m 644 config/amdocl64.icd \
