@@ -7,27 +7,29 @@
         </Packager>
         <License>MIT</License>
         <PartOf>programming.devel</PartOf>
-        <Summary xml:lang="en">OpenCL 2.0 compatible language runtime</Summary>
-        <Description xml:lang="en">OpenCL 2.0 compatible language runtime
+        <Summary xml:lang="en">OpenCL 2.2 compatible language runtime</Summary>
+        <Description xml:lang="en">OpenCL 2.2 compatible language runtime
 </Description>
         <Archive type="binary" sha1sum="79eb0752a961b8e0d15c77d298c97498fbc89c5a">https://getsol.us/sources/README.Solus</Archive>
     </Source>
     <Package>
         <Name>rocm-opencl</Name>
-        <Summary xml:lang="en">OpenCL 2.0 compatible language runtime</Summary>
-        <Description xml:lang="en">OpenCL 2.0 compatible language runtime
+        <Summary xml:lang="en">OpenCL 2.2 compatible language runtime</Summary>
+        <Description xml:lang="en">OpenCL 2.2 compatible language runtime
 </Description>
         <PartOf>programming.devel</PartOf>
         <Files>
             <Path fileType="config">/etc/OpenCL/vendors/amdocl64.icd</Path>
             <Path fileType="executable">/usr/bin/rocm-clinfo</Path>
+            <Path fileType="library">/usr/lib64/librocclr.so.5.1</Path>
+            <Path fileType="library">/usr/lib64/librocclr.so.5.1.0</Path>
             <Path fileType="doc">/usr/share/doc/rocm-opencl/LICENSE.txt</Path>
         </Files>
     </Package>
     <Package>
         <Name>rocm-opencl-devel</Name>
         <Summary xml:lang="en">Development files for rocm-opencl</Summary>
-        <Description xml:lang="en">OpenCL 2.0 compatible language runtime
+        <Description xml:lang="en">OpenCL 2.2 compatible language runtime
 </Description>
         <PartOf>programming.devel</PartOf>
         <RuntimeDependencies>
@@ -38,6 +40,7 @@
             <Path fileType="header">/usr/include/rocm-opencl/CL/cl.hpp</Path>
             <Path fileType="header">/usr/include/rocm-opencl/CL/cl2.hpp</Path>
             <Path fileType="header">/usr/include/rocm-opencl/CL/cl_dx9_media_sharing_intel.h</Path>
+            <Path fileType="header">/usr/include/rocm-opencl/CL/cl_egl.h</Path>
             <Path fileType="header">/usr/include/rocm-opencl/CL/cl_ext.h</Path>
             <Path fileType="header">/usr/include/rocm-opencl/CL/cl_ext_intel.h</Path>
             <Path fileType="header">/usr/include/rocm-opencl/CL/cl_gl.h</Path>
@@ -47,8 +50,10 @@
             <Path fileType="header">/usr/include/rocm-opencl/CL/cl_va_api_media_sharing_intel.h</Path>
             <Path fileType="header">/usr/include/rocm-opencl/CL/cl_version.h</Path>
             <Path fileType="header">/usr/include/rocm-opencl/CL/opencl.h</Path>
+            <Path fileType="header">/usr/include/rocm-opencl/icd/loader/icd_dispatch.h</Path>
             <Path fileType="library">/usr/lib64/libamdocl64.so</Path>
             <Path fileType="library">/usr/lib64/libcltrace.so</Path>
+            <Path fileType="library">/usr/lib64/librocclr.so</Path>
         </Files>
     </Package>
     <History>
