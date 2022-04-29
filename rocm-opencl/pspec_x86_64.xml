@@ -19,10 +19,10 @@
 </Description>
         <PartOf>programming.devel</PartOf>
         <Files>
-            <Path fileType="config">/etc/OpenCL/vendors/amdocl64.icd</Path>
             <Path fileType="executable">/usr/bin/rocm-clinfo</Path>
             <Path fileType="library">/usr/lib64/librocclr.so.5.1</Path>
             <Path fileType="library">/usr/lib64/librocclr.so.5.1.0</Path>
+            <Path fileType="data">/usr/share/OpenCL/vendors/amdocl64.icd</Path>
             <Path fileType="doc">/usr/share/doc/rocm-opencl/LICENSE.txt</Path>
         </Files>
     </Package>
@@ -37,13 +37,6 @@
         </RuntimeDependencies>
         <Files>
             <Path fileType="header">/usr/include/rocclr/amdocl/CMakeFiles/amdocl.dir</Path>
-            <Path fileType="header">/usr/include/rocclr/amdocl/CMakeFiles/rocclr.dir/home/jacek/YPKG/root/rocm-opencl/build/ROCclr-rocm-5.1.0/compiler/lib/utils</Path>
-            <Path fileType="header">/usr/include/rocclr/amdocl/CMakeFiles/rocclr.dir/home/jacek/YPKG/root/rocm-opencl/build/ROCclr-rocm-5.1.0/device/rocm</Path>
-            <Path fileType="header">/usr/include/rocclr/amdocl/CMakeFiles/rocclr.dir/home/jacek/YPKG/root/rocm-opencl/build/ROCclr-rocm-5.1.0/elf</Path>
-            <Path fileType="header">/usr/include/rocclr/amdocl/CMakeFiles/rocclr.dir/home/jacek/YPKG/root/rocm-opencl/build/ROCclr-rocm-5.1.0/os</Path>
-            <Path fileType="header">/usr/include/rocclr/amdocl/CMakeFiles/rocclr.dir/home/jacek/YPKG/root/rocm-opencl/build/ROCclr-rocm-5.1.0/platform</Path>
-            <Path fileType="header">/usr/include/rocclr/amdocl/CMakeFiles/rocclr.dir/home/jacek/YPKG/root/rocm-opencl/build/ROCclr-rocm-5.1.0/thread</Path>
-            <Path fileType="header">/usr/include/rocclr/amdocl/CMakeFiles/rocclr.dir/home/jacek/YPKG/root/rocm-opencl/build/ROCclr-rocm-5.1.0/utils</Path>
             <Path fileType="header">/usr/include/rocclr/amdocl/cl_agent_amd.h</Path>
             <Path fileType="header">/usr/include/rocclr/amdocl/cl_common.hpp</Path>
             <Path fileType="header">/usr/include/rocclr/amdocl/cl_d3d10_amd.hpp</Path>
@@ -190,7 +183,7 @@
     </Package>
     <History>
         <Update release="1">
-            <Date>2022-04-27</Date>
+            <Date>2022-04-28</Date>
             <Version>5.1.0</Version>
             <Comment>Packaging update</Comment>
             <Name>Jacek Jagosz</Name>
