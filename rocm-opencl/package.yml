@@ -30,7 +30,7 @@ setup      : |
     sed -i "s/STATIC/SHARED/" cmake/ROCclr.cmake
     echo "set_target_properties(rocclr PROPERTIES VERSION 5.1.0 SOVERSION 5.1)" \
     >> cmake/ROCclr.cmake
-    %cmake \
+    %cmake -Wno-dev \
         -DAMD_OPENCL_PATH="%workdir%/ROCm-OpenCL-Runtime-rocm-%version%"
     popd
     pushd ROCm-OpenCL-Runtime-rocm-%version%
@@ -40,9 +40,8 @@ setup      : |
     rm -r khronos/headers/*/tests/
     %apply_patches
     %cmake -Wno-dev  \
-        -DCMAKE_MODULE_PATH="%workdir%/ROCclr-rocm-%version%/%__cmake_builddir" \
+        -DCMAKE_MODULE_PATH="%workdir%/ROCclr-rocm-%version%" \
         -DROCM_PATH=%PREFIX% \
-        -DCMAKE_PREFIX_PATH="%workdir%/ROCclr-rocm-%version%;%prefix%" \
         -DROCCLR_PATH="%workdir%/ROCclr-rocm-%version%" \
         -DAMD_OPENCL_PATH="%workdir%/ROCm-OpenCL-Runtime-rocm-%version%" -DBUILD_ICD=OFF
 build      : |
@@ -60,7 +59,7 @@ install    : |
     %make_install
 
     install -Dm00644 config/amdocl64.icd \
-    %installroot%/etc/OpenCL/vendors/amdocl64.icd
+    %installroot%/usr/share/OpenCL/vendors/amdocl64.icd
 
     #Avoid file conflicts with opencl-headers package:
     mkdir -p %installroot%/usr/include/rocm-opencl
