@@ -10,7 +10,6 @@ libc.so.6:getlogin_r
 libc.so.6:getpwnam
 libc.so.6:memcpy
 libc.so.6:open
-libc.so.6:pclose
 libc.so.6:popen
 libc.so.6:printf
 libc.so.6:putchar

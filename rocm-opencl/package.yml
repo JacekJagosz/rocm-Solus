@@ -1,9 +1,9 @@
 name       : rocm-opencl
-version    : 5.1.0
+version    : 5.0.0
 release    : 1
 source     :
-    - https://github.com/ROCm-Developer-Tools/ROCclr/archive/refs/tags/rocm-5.1.0.tar.gz : f4f265604b534795a275af902b2c814f416434d9c9e16db81b3ed5d062187dfa
-    - https://github.com/RadeonOpenCompute/ROCm-OpenCL-Runtime/archive/refs/tags/rocm-5.1.0.tar.gz : 362d81303048cf7ed5d2f69fb65ed65425bc3da4734fff83e3b8fbdda51b0927
+    - https://github.com/ROCm-Developer-Tools/ROCclr/archive/refs/tags/rocm-5.0.0.tar.gz : 6b72faf8819628a5c109b2ade515ab9009606d10f11316f0d7e4c4c998d7f724
+    - https://github.com/RadeonOpenCompute/ROCm-OpenCL-Runtime/archive/refs/tags/rocm-5.0.0.tar.gz : 2aa3a628b336461f83866c4e76225ef5338359e31f802987699d6308515ae1be
 license    : MIT
 component  : programming.devel
 clang      : yes
@@ -22,23 +22,25 @@ builddeps  :
     - rocm-device-libs-devel
     - rocm-runtime-devel
 setup      : |
-    tar -xvzf $sources/rocm-5.1.0.tar.gz
-    tar -xvzf $sources/rocm-5.1.0.tar.gz.1
+    tar -xvzf $sources/rocm-5.0.0.tar.gz
+    tar -xvzf $sources/rocm-5.0.0.tar.gz.1
     pushd ROCclr-rocm-%version%
     %patch -p1 < $pkgfiles/0001-enable-gfx800.patch
     %patch -p1 < $pkgfiles/0001-Allow-ROCclr-to-be-built-standalone.patch
     sed -i "s/STATIC/SHARED/" cmake/ROCclr.cmake
-    echo "set_target_properties(rocclr PROPERTIES VERSION 5.1.0 SOVERSION 5.1)" \
+    echo "set_target_properties(rocclr PROPERTIES VERSION 5.0.0 SOVERSION 5.0)" \
     >> cmake/ROCclr.cmake
     %cmake -Wno-dev \
         -DAMD_OPENCL_PATH="%workdir%/ROCm-OpenCL-Runtime-rocm-%version%"
     popd
     pushd ROCm-OpenCL-Runtime-rocm-%version%
-    ls -d khronos/icd/* | grep -v loader | xargs rm -r
-    ls -d khronos/icd/loader/* | grep -v icd_dispatch.h | xargs rm -r
+    #ls -d khronos/icd/* | grep -v loader | xargs rm -r
+    #ls -d khronos/icd/loader/* | grep -v icd_dispatch.h | xargs rm -r
     ls -d khronos/headers/* | grep -v opencl2.2 | xargs rm -r
     rm -r khronos/headers/*/tests/
-    %apply_patches
+    sed -i -e "/add_subdirectory(khronos\/icd)/d" \
+     -e "/get_target_property(OPENCL_LIB_/d" CMakeLists.txt
+    #apply_patches
     %cmake -Wno-dev  \
         -DCMAKE_MODULE_PATH="%workdir%/ROCclr-rocm-%version%" \
         -DROCM_PATH=%PREFIX% \

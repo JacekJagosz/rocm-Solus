@@ -25,7 +25,6 @@
             <Path fileType="data">/usr/share/amd_comgr/LICENSE.txt</Path>
             <Path fileType="data">/usr/share/amd_comgr/NOTICES.txt</Path>
             <Path fileType="data">/usr/share/amd_comgr/README.md</Path>
-            <Path fileType="doc">/usr/share/doc/amd_comgr/comgr/LICENSE.txt</Path>
         </Files>
     </Package>
     <Package>
@@ -48,7 +47,7 @@
     </Package>
     <History>
         <Update release="1">
-            <Date>2022-04-27</Date>
+            <Date>2022-04-29</Date>
             <Version>5.1.0</Version>
             <Comment>Packaging update</Comment>
             <Name>Jacek Jagosz</Name>

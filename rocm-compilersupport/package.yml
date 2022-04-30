@@ -2,7 +2,7 @@ name       : rocm-compilersupport
 version    : 5.1.0
 release    : 1
 source     :
-    - https://github.com/RadeonOpenCompute/ROCm-CompilerSupport/archive/refs/tags/rocm-5.1.0.tar.gz : 1cdcfe5acb768ef50fb0026d4ee7ba01e615251ad3c27bb2593cdcf8c070a894
+    - https://github.com/RadeonOpenCompute/ROCm-CompilerSupport/archive/refs/tags/rocm-5.0.0.tar.gz : da1bbc694bd930a504406eb0a0018c2e317d8b2c136fb2cab8de426870efe9a8
 license    : NCSA
 component  : programming.devel
 clang      : yes

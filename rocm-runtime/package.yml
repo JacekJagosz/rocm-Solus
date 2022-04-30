@@ -2,7 +2,7 @@ name       : rocm-runtime
 version    : 5.1.0
 release    : 1
 source     :
-    - https://github.com/RadeonOpenCompute/ROCR-Runtime/archive/refs/tags/rocm-5.1.0.tar.gz : a5f7245059c3d28dbc037e1e6fa3f09084e29147096dd61f7ce5560291ab330f
+    - https://github.com/RadeonOpenCompute/ROCR-Runtime/archive/refs/tags/rocm-5.0.0.tar.gz : 61644365ea2b09fa7ec22f3dbdb74f2b6b1daa34b180138da9e0c856006a373e
 license    : NCSA
 component  : programming.devel
 clang      : yes
@@ -13,11 +13,12 @@ description: |
 builddeps  :
     - pkgconfig(libdrm)
     - pkgconfig(libelf)
-    - pkgconfig(libhsakmt)
+    - hsakmt-devel
     - pkgconfig(numa)
     - rocm-device-libs-devel
     - vim
 setup      : |
+    ls -ltra
     %apply_patches
     %cmake -S src -DBITCODE_DIR="%libdir%/amdgcn/bitcode"
 build      : |

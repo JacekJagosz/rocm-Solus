@@ -2,7 +2,7 @@ name       : rocminfo
 version    : 5.1.0
 release    : 1
 source     :
-    - https://github.com/RadeonOpenCompute/rocminfo/archive/refs/tags/rocm-5.1.0.tar.gz : 76f6cc9e69d9fc7e692e5c7db35e89079d3b1d2d47632e4742d612e743c396d3
+    - https://github.com/RadeonOpenCompute/rocminfo/archive/refs/tags/rocm-5.0.0.tar.gz : 43e025de31bffa335d9cb682649add886afdd02c92090ee63e9bf77b3aaaa75b
 homepage   : https://github.com/RadeonOpenCompute/rocminfo/
 license    : NCSA
 component  : programming.devel

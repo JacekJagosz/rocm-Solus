@@ -35,8 +35,6 @@
             <Path fileType="library">/usr/lib64/amdgcn/bitcode/asanrtl.bc</Path>
             <Path fileType="library">/usr/lib64/amdgcn/bitcode/hip.bc</Path>
             <Path fileType="library">/usr/lib64/amdgcn/bitcode/ockl.bc</Path>
-            <Path fileType="library">/usr/lib64/amdgcn/bitcode/oclc_abi_version_400.bc</Path>
-            <Path fileType="library">/usr/lib64/amdgcn/bitcode/oclc_abi_version_500.bc</Path>
             <Path fileType="library">/usr/lib64/amdgcn/bitcode/oclc_correctly_rounded_sqrt_off.bc</Path>
             <Path fileType="library">/usr/lib64/amdgcn/bitcode/oclc_correctly_rounded_sqrt_on.bc</Path>
             <Path fileType="library">/usr/lib64/amdgcn/bitcode/oclc_daz_opt_off.bc</Path>
@@ -81,7 +79,6 @@
             <Path fileType="library">/usr/lib64/amdgcn/bitcode/oclc_wavefrontsize64_on.bc</Path>
             <Path fileType="library">/usr/lib64/amdgcn/bitcode/ocml.bc</Path>
             <Path fileType="library">/usr/lib64/amdgcn/bitcode/opencl.bc</Path>
-            <Path fileType="doc">/usr/share/doc/ROCm-Device-Libs/rocm-device-libs/LICENSE.TXT</Path>
         </Files>
     </Package>
     <Package>
@@ -105,7 +102,7 @@
     </Package>
     <History>
         <Update release="1">
-            <Date>2022-04-27</Date>
+            <Date>2022-04-29</Date>
             <Version>5.1.0</Version>
             <Comment>Packaging update</Comment>
             <Name>Jacek Jagosz</Name>

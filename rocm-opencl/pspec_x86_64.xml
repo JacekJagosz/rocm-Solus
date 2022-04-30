@@ -20,10 +20,9 @@
         <PartOf>programming.devel</PartOf>
         <Files>
             <Path fileType="executable">/usr/bin/rocm-clinfo</Path>
-            <Path fileType="library">/usr/lib64/librocclr.so.5.1</Path>
-            <Path fileType="library">/usr/lib64/librocclr.so.5.1.0</Path>
+            <Path fileType="library">/usr/lib64/librocclr.so.5.0</Path>
+            <Path fileType="library">/usr/lib64/librocclr.so.5.0.0</Path>
             <Path fileType="data">/usr/share/OpenCL/vendors/amdocl64.icd</Path>
-            <Path fileType="doc">/usr/share/doc/rocm-opencl/LICENSE.txt</Path>
         </Files>
     </Package>
     <Package>
@@ -69,9 +68,39 @@
             <Path fileType="header">/usr/include/rocclr/device/devsignal.hpp</Path>
             <Path fileType="header">/usr/include/rocclr/device/devurilocator.hpp</Path>
             <Path fileType="header">/usr/include/rocclr/device/devwavelimiter.hpp</Path>
+            <Path fileType="header">/usr/include/rocclr/device/gpu/gpuappprofile.hpp</Path>
+            <Path fileType="header">/usr/include/rocclr/device/gpu/gpubinary.hpp</Path>
+            <Path fileType="header">/usr/include/rocclr/device/gpu/gpublit.hpp</Path>
+            <Path fileType="header">/usr/include/rocclr/device/gpu/gpuconstbuf.hpp</Path>
+            <Path fileType="header">/usr/include/rocclr/device/gpu/gpucounters.hpp</Path>
+            <Path fileType="header">/usr/include/rocclr/device/gpu/gpudebugger.hpp</Path>
+            <Path fileType="header">/usr/include/rocclr/device/gpu/gpudebugmanager.hpp</Path>
+            <Path fileType="header">/usr/include/rocclr/device/gpu/gpudefs.hpp</Path>
+            <Path fileType="header">/usr/include/rocclr/device/gpu/gpudevice.hpp</Path>
+            <Path fileType="header">/usr/include/rocclr/device/gpu/gpukernel.hpp</Path>
+            <Path fileType="header">/usr/include/rocclr/device/gpu/gpumemory.hpp</Path>
+            <Path fileType="header">/usr/include/rocclr/device/gpu/gpuprintf.hpp</Path>
+            <Path fileType="header">/usr/include/rocclr/device/gpu/gpuprogram.hpp</Path>
+            <Path fileType="header">/usr/include/rocclr/device/gpu/gpuresource.hpp</Path>
+            <Path fileType="header">/usr/include/rocclr/device/gpu/gpusched.hpp</Path>
+            <Path fileType="header">/usr/include/rocclr/device/gpu/gpusettings.hpp</Path>
+            <Path fileType="header">/usr/include/rocclr/device/gpu/gputhreadtrace.hpp</Path>
+            <Path fileType="header">/usr/include/rocclr/device/gpu/gputimestamp.hpp</Path>
+            <Path fileType="header">/usr/include/rocclr/device/gpu/gputrap.hpp</Path>
+            <Path fileType="header">/usr/include/rocclr/device/gpu/gpuvirtual.hpp</Path>
+            <Path fileType="header">/usr/include/rocclr/device/gpu/gslbe/src/promotions</Path>
+            <Path fileType="header">/usr/include/rocclr/device/gpu/gslbe/src/rt/DxxOpenCLInteropExt.h</Path>
+            <Path fileType="header">/usr/include/rocclr/device/gpu/gslbe/src/rt/EventQueue.h</Path>
+            <Path fileType="header">/usr/include/rocclr/device/gpu/gslbe/src/rt/GSLContext.h</Path>
+            <Path fileType="header">/usr/include/rocclr/device/gpu/gslbe/src/rt/GSLDevice.h</Path>
+            <Path fileType="header">/usr/include/rocclr/device/gpu/gslbe/src/rt/backend.h</Path>
+            <Path fileType="header">/usr/include/rocclr/device/gpu/gslbe/src/rt/caltarget.h</Path>
+            <Path fileType="header">/usr/include/rocclr/device/gpu/gslbe/src/rt/inifile/ini_export.h</Path>
+            <Path fileType="header">/usr/include/rocclr/device/gpu/gslbe/src/rt/inifile/ini_values.h</Path>
+            <Path fileType="header">/usr/include/rocclr/device/gpu/gslbe/src/rt/inifile/inifile.h</Path>
+            <Path fileType="header">/usr/include/rocclr/device/gpu/gslbe/src/rt/inifile/inifile_parser.h</Path>
             <Path fileType="header">/usr/include/rocclr/device/hsailctx.hpp</Path>
             <Path fileType="header">/usr/include/rocclr/device/hwdebug.hpp</Path>
-            <Path fileType="header">/usr/include/rocclr/device/pal/DxxOpenCLInteropExt.h</Path>
             <Path fileType="header">/usr/include/rocclr/device/pal/palappprofile.hpp</Path>
             <Path fileType="header">/usr/include/rocclr/device/pal/palblit.hpp</Path>
             <Path fileType="header">/usr/include/rocclr/device/pal/palconstbuf.hpp</Path>
@@ -183,8 +212,8 @@
     </Package>
     <History>
         <Update release="1">
-            <Date>2022-04-28</Date>
-            <Version>5.1.0</Version>
+            <Date>2022-04-30</Date>
+            <Version>5.0.0</Version>
             <Comment>Packaging update</Comment>
             <Name>Jacek Jagosz</Name>
             <Email>jacek.jagosz@outlook.com</Email>
