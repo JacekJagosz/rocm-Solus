@@ -20,12 +20,9 @@
         <PartOf>programming.devel</PartOf>
         <Files>
             <Path fileType="executable">/usr/bin/rocm-clinfo</Path>
-            <Path fileType="library">/usr/lib64/libOpenCL.so.1</Path>
-            <Path fileType="library">/usr/lib64/libOpenCL.so.1.2</Path>
             <Path fileType="library">/usr/lib64/librocclr.so.5.1</Path>
             <Path fileType="library">/usr/lib64/librocclr.so.5.1.0</Path>
             <Path fileType="data">/usr/share/OpenCL/vendors/amdocl64.icd</Path>
-            <Path fileType="doc">/usr/share/doc/rocm-ocl-icd/LICENSE</Path>
             <Path fileType="doc">/usr/share/doc/rocm-opencl/LICENSE.txt</Path>
         </Files>
     </Package>
@@ -178,7 +175,6 @@
             <Path fileType="header">/usr/include/rocm-opencl/CL/cl_version.h</Path>
             <Path fileType="header">/usr/include/rocm-opencl/CL/opencl.h</Path>
             <Path fileType="header">/usr/include/rocm-opencl/icd/loader/icd_dispatch.h</Path>
-            <Path fileType="library">/usr/lib64/libOpenCL.so</Path>
             <Path fileType="library">/usr/lib64/libamdocl64.so</Path>
             <Path fileType="library">/usr/lib64/libcltrace.so</Path>
             <Path fileType="library">/usr/lib64/librocclr.so</Path>
@@ -187,7 +183,7 @@
     </Package>
     <History>
         <Update release="1">
-            <Date>2022-04-30</Date>
+            <Date>2022-05-04</Date>
             <Version>5.1.0</Version>
             <Comment>Packaging update</Comment>
             <Name>Jacek Jagosz</Name>

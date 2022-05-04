@@ -2,8 +2,8 @@ name       : rocm-opencl
 version    : 5.1.0
 release    : 1
 source     :
-    - https://github.com/ROCm-Developer-Tools/ROCclr/archive/refs/tags/rocm-5.1.0.tar.gz : f4f265604b534795a275af902b2c814f416434d9c9e16db81b3ed5d062187dfa
-    - https://github.com/RadeonOpenCompute/ROCm-OpenCL-Runtime/archive/refs/tags/rocm-5.1.0.tar.gz : 362d81303048cf7ed5d2f69fb65ed65425bc3da4734fff83e3b8fbdda51b0927
+    - https://github.com/ROCm-Developer-Tools/ROCclr/archive/refs/tags/rocm-5.1.0.tar.gz#ROCclr.tar.gz : f4f265604b534795a275af902b2c814f416434d9c9e16db81b3ed5d062187dfa
+    - https://github.com/RadeonOpenCompute/ROCm-OpenCL-Runtime/archive/refs/tags/rocm-5.1.0.tar.gz#ROCm-OpenCL-Runtime.tar.gz : 362d81303048cf7ed5d2f69fb65ed65425bc3da4734fff83e3b8fbdda51b0927
 license    : MIT
 component  : programming.devel
 clang      : yes
@@ -15,15 +15,15 @@ builddeps  :
     - pkgconfig(OpenCL)
     - pkgconfig(d3d)
     - pkgconfig(gl)
+    - pkgconfig(libhsakmt)
     - pkgconfig(x11-xcb)
-    - hsakmt-devel
     - rocm-cmake
-    - rocm-compilersupport
+    - rocm-compilersupport-devel
     - rocm-device-libs-devel
     - rocm-runtime-devel
 setup      : |
-    tar -xvzf $sources/rocm-5.1.0.tar.gz
-    tar -xvzf $sources/rocm-5.1.0.tar.gz.1
+    tar -xvzf $sources/ROCclr.tar.gz
+    tar -xvzf $sources/ROCm-OpenCL-Runtime.tar.gz
     pushd ROCclr-rocm-%version%
     %patch -p1 < $pkgfiles/0001-enable-gfx800.patch
     %patch -p1 < $pkgfiles/0001-Allow-ROCclr-to-be-built-standalone.patch
