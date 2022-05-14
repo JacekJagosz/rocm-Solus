@@ -12,8 +12,6 @@ description: |
     HIP is a C++ Runtime API and Kernel Language that allows developers to create portable applications for AMD and NVIDIA GPUs from single source code.
 extract    : False
 builddeps  :
-    - pkgconfig(OpenCL)
-    - pkgconfig(d3d)
     - pkgconfig(gl)
     - pkgconfig(libhsakmt)
     - pkgconfig(x11-xcb)
@@ -31,11 +29,8 @@ setup      : |
     cd hipamd-rocm-%version%
     %apply_patches
 
-    #FIXME: soname is broken when building from tar, upstream is fixing the issue:
+    #soname is broken when building from tar, upstream is fixing the issue:
     sed -i 's/-${HIP_VERSION_GITHASH}//' CMakeLists.txt
-
-    #some hip cmake files don't respect the Linux FHS:
-    #sed -i "s/\(cmake DESTINATION \)./\1\${LIB_INSTALL_DIR}/" CMakeLists.txt
 
     #HIP requires RPATH
     sed -i "/CMAKE_INSTALL_RPATH/d" CMakeLists.txt
@@ -44,9 +39,8 @@ setup      : |
     cd build
     %cmake -S.. -B. \
         -DHIP_COMMON_DIR=%workdir%/HIP-rocm-%version% \
+        -DCMAKE_INSTALL_LIBDIR=%libdir% \
         -DHIP_COMPILER=clang \
-        -DROCM_PATH=%PREFIX% \
-        -DROCCLR_INCLUDE_DIR=/usr/include/rocclr/include \
         -DHIP_VERSION_BUILD_ID=0
 build      : |
     cd hipamd-rocm-%version%/build
@@ -55,7 +49,6 @@ install    : |
     cd hipamd-rocm-%version%/build
     %make_install
 
-    #cmake hardcodes libdir, instead of using cmake's gnuinstalldirs
-    mv %installroot%%PREFIX%/lib %installroot%%libdir%
-    sed -i "s|lib\(/libamdhip64.so\)|lib64\1|" \
-        %installroot%%libdir%/cmake/hip*/*.cmake
+    #hip installs some cmake modules incorrectly:
+    mv %installroot%/usr/cmake %installroot%%libdir%/cmake/Modules
+

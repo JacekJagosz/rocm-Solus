@@ -33,9 +33,9 @@
             <Path fileType="executable">/usr/bin/roc-obj-ls</Path>
             <Path fileType="library">/usr/lib64/.hipInfo</Path>
             <Path fileType="library">/usr/lib64/libamdhip64.so.5</Path>
-            <Path fileType="library">/usr/lib64/libamdhip64.so.5.1.20531-</Path>
+            <Path fileType="library">/usr/lib64/libamdhip64.so.5.1.20531</Path>
             <Path fileType="library">/usr/lib64/libhiprtc-builtins.so.5</Path>
-            <Path fileType="library">/usr/lib64/libhiprtc-builtins.so.5.1.20531-</Path>
+            <Path fileType="library">/usr/lib64/libhiprtc-builtins.so.5.1.20531</Path>
         </Files>
     </Package>
     <Package>
@@ -113,9 +113,9 @@
             <Path fileType="header">/usr/include/hip/nvidia_detail/nvidia_hiprtc.h</Path>
             <Path fileType="header">/usr/include/hip/surface_types.h</Path>
             <Path fileType="header">/usr/include/hip/texture_types.h</Path>
-            <Path fileType="library">/usr/lib64/cmake/FindHIP.cmake</Path>
-            <Path fileType="library">/usr/lib64/cmake/FindHIP/run_hipcc.cmake</Path>
-            <Path fileType="library">/usr/lib64/cmake/FindHIP/run_make2cmake.cmake</Path>
+            <Path fileType="library">/usr/lib64/cmake/Modules/FindHIP.cmake</Path>
+            <Path fileType="library">/usr/lib64/cmake/Modules/FindHIP/run_hipcc.cmake</Path>
+            <Path fileType="library">/usr/lib64/cmake/Modules/FindHIP/run_make2cmake.cmake</Path>
             <Path fileType="library">/usr/lib64/cmake/hip-lang/hip-lang-config-version.cmake</Path>
             <Path fileType="library">/usr/lib64/cmake/hip-lang/hip-lang-config.cmake</Path>
             <Path fileType="library">/usr/lib64/cmake/hip-lang/hip-lang-targets-relwithdebinfo.cmake</Path>

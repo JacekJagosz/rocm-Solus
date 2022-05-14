@@ -117,8 +117,8 @@ libamdocl64.so:clSetUserEventStatus
 libamdocl64.so:clUnloadCompiler
 libamdocl64.so:clUnloadPlatformCompiler
 libamdocl64.so:clWaitForEvents
-libcltrace.so:vdiAgent_OnLoad
-libcltrace.so:vdiAgent_OnUnload
+libcltrace.so.5.1:vdiAgent_OnLoad
+libcltrace.so.5.1:vdiAgent_OnUnload
 librocclr.so.5.1:AMD_CPU_AFFINITY
 librocclr.so.5.1:AMD_DIRECT_DISPATCH
 librocclr.so.5.1:AMD_GPU_FORCE_SINGLE_FP_DENORM

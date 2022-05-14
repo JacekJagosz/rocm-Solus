@@ -51,7 +51,8 @@
             <Path fileType="header">/usr/include/rocm-opencl/CL/cl_va_api_media_sharing_intel.h</Path>
             <Path fileType="header">/usr/include/rocm-opencl/CL/cl_version.h</Path>
             <Path fileType="header">/usr/include/rocm-opencl/CL/opencl.h</Path>
-            <Path fileType="header">/usr/include/rocm-opencl/icd/loader/icd_dispatch.h</Path>
+            <Path fileType="library">/usr/lib64/libcltrace.so.5.1</Path>
+            <Path fileType="library">/usr/lib64/libcltrace.so.5.1.0</Path>
         </Files>
     </Package>
     <Package>
@@ -197,13 +198,13 @@
             <Path fileType="header">/usr/include/rocclr/utils/macros.hpp</Path>
             <Path fileType="header">/usr/include/rocclr/utils/util.hpp</Path>
             <Path fileType="header">/usr/include/rocclr/utils/versions.hpp</Path>
+            <Path fileType="library">/usr/lib64/cmake/ROCclr/ROCclrConfig.cmake</Path>
             <Path fileType="library">/usr/lib64/librocclr.so</Path>
-            <Path fileType="data">/usr/share/cmake/Modules/ROCclr.cmake</Path>
         </Files>
     </Package>
     <History>
         <Update release="1">
-            <Date>2022-05-13</Date>
+            <Date>2022-05-14</Date>
             <Version>5.1.0</Version>
             <Comment>Packaging update</Comment>
             <Name>Jacek Jagosz</Name>
