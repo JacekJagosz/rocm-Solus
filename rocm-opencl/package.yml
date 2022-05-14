@@ -1,4 +1,4 @@
-name       : rocm-opencl
+name       : rocm
 version    : 5.1.0
 release    : 1
 source     :
@@ -7,10 +7,36 @@ source     :
 license    : MIT
 component  : programming.devel
 clang      : yes
-summary    : OpenCL 2.2 compatible language runtime
+summary    :
+    - OpenCL 2.2 compatible language runtime for AMD Radeon GPUs
+    - rocm-rocclr : Radeon Open Compute Common Language Runtime
+    - rocm-rocclr-devel : ROCclr development package
 description: |
-    OpenCL 2.2 compatible language runtime
+    OpenCL 2.2 compatible language runtime for AMD Radeon GPUs
 extract    : False
+rundeps    :
+    - opencl :
+        - rocm-rocclr
+        - rocminfo
+    - opencl-devel :
+        - rocm-rocclr-devel
+        - rocm-opencl
+    - rocclr-devel:
+        - rocm-rocclr
+patterns   :
+    - opencl :
+        - /usr/bin/rocm-clinfo
+        - /usr/share/OpenCL
+        - /usr/share/doc
+        - /usr/lib64/*
+    - opencl-devel :
+        - /usr/include/rocm-opencl
+    - rocclr :
+        - /usr/lib64/librocclr.so.5*
+    - rocclr-devel :
+        - /usr/lib64/librocclr.so
+        - /usr/include/rocclr
+        - /usr/share/cmake
 builddeps  :
     - pkgconfig(OpenCL)
     - pkgconfig(d3d)

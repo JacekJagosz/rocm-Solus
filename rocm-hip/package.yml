@@ -20,6 +20,7 @@ builddeps  :
     - rocm-cmake
     - rocm-compilersupport-devel
     - rocm-device-libs-devel
+    - rocm-rocclr-devel
     - rocm-opencl-devel
     - rocm-runtime-devel
 environment: |
@@ -30,8 +31,11 @@ setup      : |
     cd hipamd-rocm-%version%
     %apply_patches
 
+    #FIXME: soname is broken when building from tar, upstream is fixing the issue:
+    sed -i 's/-${HIP_VERSION_GITHASH}//' CMakeLists.txt
+
     #some hip cmake files don't respect the Linux FHS:
-    sed -i "s/\(cmake DESTINATION \)./\1\${LIB_INSTALL_DIR}/" CMakeLists.txt
+    #sed -i "s/\(cmake DESTINATION \)./\1\${LIB_INSTALL_DIR}/" CMakeLists.txt
 
     #HIP requires RPATH
     sed -i "/CMAKE_INSTALL_RPATH/d" CMakeLists.txt
@@ -41,10 +45,8 @@ setup      : |
     %cmake -S.. -B. \
         -DHIP_COMMON_DIR=%workdir%/HIP-rocm-%version% \
         -DHIP_COMPILER=clang \
-        -DAMD_OPENCL_INCLUDE_DIR=/usr/include/rocm-opencl/CL \
         -DROCM_PATH=%PREFIX% \
         -DROCCLR_INCLUDE_DIR=/usr/include/rocclr/include \
-        -DCMAKE_MODULE_PATH="/usr/share/cmake/Modules" \
         -DHIP_VERSION_BUILD_ID=0
 build      : |
     cd hipamd-rocm-%version%/build
