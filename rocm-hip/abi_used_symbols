@@ -158,6 +158,7 @@ libstdc++.so.6:_ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE4findEcm
 libstdc++.so.6:_ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE5rfindEPKcmm
 libstdc++.so.6:_ZNKSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE7compareEPKc
 libstdc++.so.6:_ZNKSt8__detail20_Prime_rehash_policy14_M_need_rehashEmmm
+libstdc++.so.6:_ZNSo3putEc
 libstdc++.so.6:_ZNSo9_M_insertIPKvEERSoT_
 libstdc++.so.6:_ZNSo9_M_insertIbEERSoT_
 libstdc++.so.6:_ZNSo9_M_insertIdEERSoT_
@@ -191,6 +192,7 @@ libstdc++.so.6:_ZSt15__once_callable
 libstdc++.so.6:_ZSt16__ostream_insertIcSt11char_traitsIcEERSt13basic_ostreamIT_T0_ES6_PKS3_l
 libstdc++.so.6:_ZSt17__throw_bad_allocv
 libstdc++.so.6:_ZSt18_Rb_tree_decrementPSt18_Rb_tree_node_base
+libstdc++.so.6:_ZSt18_Rb_tree_incrementPSt18_Rb_tree_node_base
 libstdc++.so.6:_ZSt19__throw_logic_errorPKc
 libstdc++.so.6:_ZSt20__throw_length_errorPKc
 libstdc++.so.6:_ZSt20__throw_system_errori

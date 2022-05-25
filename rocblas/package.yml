@@ -1,0 +1,52 @@
+name       : rocblas
+version    : 5.1.0
+release    : 1
+source     :
+    - https://github.com/ROCmSoftwarePlatform/rocBLAS/archive/refs/tags/rocm-5.1.0.tar.gz : efa0c424b5ada697314aa8a78c19c93ade15f1612c4bfc8c53d71d1c9719aaa3
+license    : GPL-2.0-or-later # CHECK ME
+component  : programming.library
+clang      : yes
+networking : yes
+summary    : PLEASE FILL ME IN
+description: |
+    PLEASE FILL ME IN
+builddeps  :
+    - pkgconfig(msgpack)
+    - git
+    - pkgconfig(libhsakmt)
+    - perl-file-which
+    - pyyaml
+    - rocm-cmake
+    - rocm-compilersupport-devel
+    - rocm-device-libs-devel
+    - rocm-hip-devel
+    - rocm-rocclr-devel
+    - rocm-opencl-devel
+    - rocm-runtime-devel
+    - rocm-smi-devel
+    - virtualenv
+environment: |
+    #export HIP_PATH="/usr/lib64/cmake/hsa-runtime64"
+setup      : |
+
+    %cmake_ninja -Damd_comgr_DIR=/usr/lib64/cmake/amd_comgr \
+                -DBUILD_WITH_TENSILE=ON \
+                -DBUILD_WITH_TENSILE_HOST=ON \
+                -DTensile_LIBRARY_FORMAT=yaml \
+                -DTensile_LOGIC=asm_full \
+                -DTensile_CODE_OBJECT_VERSION=V3 \
+                -DBUILD_CLIENTS_TESTS=OFF \
+                -DBUILD_CLIENTS_BENCHMARKS=OFF \
+                -DBUILD_CLIENTS_SAMPLES=OFF \
+                -DBUILD_TESTING=OFF \
+                -DHIP_PATH="/usr/lib64/cmake/hsa-runtime64" \
+                -DCMAKE_PREFIX_PATH=/usr/include \
+                -DTensile_COMPILER="hipcc" \
+                -DCMAKE_CXX_COMPILER=clang
+                #-DHSA_LIBRARIES=/usr/lib64/cmake
+                #-DAMDGPU_TARGETS=gfx902
+                #-DROCM_PATH=%PREFIX%
+build      : |
+    %ninja_build
+install    : |
+    %ninja_install

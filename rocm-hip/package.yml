@@ -52,3 +52,6 @@ install    : |
     #hip installs some cmake modules incorrectly:
     mv %installroot%/usr/cmake %installroot%%libdir%/cmake/Modules
 
+    #make hip-config.cmake less broken, allowing to build stuff that relies on hip
+    sed -i 's|${_IMPORT_PREFIX}/../include|${_IMPORT_PREFIX}/include|g' %installroot%%libdir%/cmake/hip/hip-config.cmake
+    sed -i 's|"${ROCM_PATH}/llvm"|"/usr"|g' %installroot%%libdir%/cmake/hip/hip-config.cmake
