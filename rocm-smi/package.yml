@@ -8,9 +8,6 @@ component  : programming.devel
 summary    : ROCm System Management Interface Library
 description: |
     ROCm System Management Interface Library
-builddeps  :
-    - doxygen
-    - texstudio
 setup      : |
     %cmake_ninja
 build      : |

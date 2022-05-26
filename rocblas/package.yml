@@ -27,11 +27,15 @@ builddeps  :
     - virtualenv
 environment: |
     #export HIP_PATH="/usr/lib64/cmake/hsa-runtime64"
+    #export DEVICE_LIB_PATH="/usr/lib64"
+    #CXXFLAGS="$CXXFLAGS --rocm-device-lib-path=/usr/lib64/cmake/AMDDeviceLibs"
+    export HIP_DEVICE_LIB_PATH="/usr/lib64/amdgcn/bitecode"
 setup      : |
 
     %cmake_ninja -Damd_comgr_DIR=/usr/lib64/cmake/amd_comgr \
-                -DBUILD_WITH_TENSILE=ON \
-                -DBUILD_WITH_TENSILE_HOST=ON \
+                -DTensile_CPU_THREADS=%JOBS% \
+                -DBUILD_WITH_TENSILE=OFF \
+                -DBUILD_WITH_TENSILE_HOST=OFF \
                 -DTensile_LIBRARY_FORMAT=yaml \
                 -DTensile_LOGIC=asm_full \
                 -DTensile_CODE_OBJECT_VERSION=V3 \
@@ -39,14 +43,19 @@ setup      : |
                 -DBUILD_CLIENTS_BENCHMARKS=OFF \
                 -DBUILD_CLIENTS_SAMPLES=OFF \
                 -DBUILD_TESTING=OFF \
-                -DHIP_PATH="/usr/lib64/cmake/hsa-runtime64" \
-                -DCMAKE_PREFIX_PATH=/usr/include \
+                -DHIP_PATH="/usr/lib64/cmake" \
+                -DCMAKE_PREFIX_PATH="/usr/include;/usr/lib64/cmake;/usr/share/rocm/cmake;/usr/lib64/amdgcn" \
                 -DTensile_COMPILER="hipcc" \
-                -DCMAKE_CXX_COMPILER=clang
+                -DCMAKE_CXX_COMPILER=clang \
+                -DAMDGPU_TARGETS=gfx900 #\
+                #-DHIP_DEVICE_LIB_PATH=/usr/lib64/amdgcn/bitcode
+                #--rocm-device-lib-path=/usr/lib64/cmake/AMDDeviceLibs
                 #-DHSA_LIBRARIES=/usr/lib64/cmake
-                #-DAMDGPU_TARGETS=gfx902
+                #-DAMDGPU_TARGETS=gfx90a
                 #-DROCM_PATH=%PREFIX%
 build      : |
+    #ls $HIP_DEVICE_LIB_PATH
+    #ls /usr/lib64/cmake/AMDDeviceLibs
     %ninja_build
 install    : |
     %ninja_install
