@@ -1,4 +1,3 @@
 0001-Fix-cmake-file-location.patch
-0001-Link-libclang-dynamically.patch
-0001-Change-TargetRegistry.h-path-for-Solus.patch
-0002-Revert-Changes-required-for-recent-merge-from-trunk.patch
+0001-COMGR-changes-needed-for-https-github.com-llvm-llvm-.patch
+0001-Detect-if-clang-is-static-or-shared.patch

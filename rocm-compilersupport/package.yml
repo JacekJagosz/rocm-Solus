@@ -11,6 +11,7 @@ summary    : The AMD Code Object Manager (Comgr)
 description: |
     The AMD Code Object Manager (Comgr) is a shared library which provides operations for creating and inspecting code objects.
 builddeps  :
+    - rocm-cmake
     - rocm-device-libs-devel
 setup      : |
     %apply_patches

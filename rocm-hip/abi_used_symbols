@@ -3,6 +3,7 @@ libc.so.6:__cxa_atexit
 libc.so.6:__isoc99_sscanf
 libc.so.6:__memcpy_chk
 libc.so.6:__stack_chk_fail
+libc.so.6:__wmemcpy_chk
 libc.so.6:abort
 libc.so.6:close
 libc.so.6:dlsym
@@ -24,7 +25,6 @@ libc.so.6:strlen
 libc.so.6:strncpy
 libc.so.6:strtol
 libc.so.6:wcslen
-libc.so.6:wmemcpy
 libgcc_s.so.1:_Unwind_Resume
 librocclr.so.5.1:AMD_DIRECT_DISPATCH
 librocclr.so.5.1:AMD_LOG_LEVEL
