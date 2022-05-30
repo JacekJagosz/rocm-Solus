@@ -47,7 +47,8 @@ setup      : |
                 -DCMAKE_PREFIX_PATH="/usr/include;/usr/lib64/cmake;/usr/share/rocm/cmake;/usr/lib64/amdgcn" \
                 -DTensile_COMPILER="hipcc" \
                 -DCMAKE_CXX_COMPILER=clang \
-                -DAMDGPU_TARGETS=gfx900 #\
+                -DAMDGPU_TARGETS=gfx900 \
+                -DROCM_DIR=%PREFIX%
                 #-DHIP_DEVICE_LIB_PATH=/usr/lib64/amdgcn/bitcode
                 #--rocm-device-lib-path=/usr/lib64/cmake/AMDDeviceLibs
                 #-DHSA_LIBRARIES=/usr/lib64/cmake

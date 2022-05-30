@@ -16,6 +16,8 @@ description: |
     - OpenCL built-in library
     - HIP built-in library
     - Heterogeneous Compute built-in library
+builddeps  :
+    - rocm-cmake
 setup      : |
     %patch -p1 < $pkgfiles/0001-Use-FHS-compliant-install.patch
     %cmake_ninja

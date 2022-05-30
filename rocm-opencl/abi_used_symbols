@@ -203,6 +203,12 @@ libhsa-runtime64.so.1:hsa_system_extension_supported
 libhsa-runtime64.so.1:hsa_system_get_info
 libhsa-runtime64.so.1:hsa_system_get_major_extension_table
 libm.so.6:pow
+libnuma.so.1:get_mempolicy
+libnuma.so.1:numa_bitmask_alloc
+libnuma.so.1:numa_bitmask_free
+libnuma.so.1:numa_node_to_cpus
+libnuma.so.1:numa_num_configured_cpus
+libnuma.so.1:numa_sched_setaffinity
 libstdc++.so.6:_ZNKSt12__basic_fileIcE7is_openEv
 libstdc++.so.6:_ZNKSt5ctypeIcE13_M_widen_initEv
 libstdc++.so.6:_ZNKSt6locale2id5_M_idEv

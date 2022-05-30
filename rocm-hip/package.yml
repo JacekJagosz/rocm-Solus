@@ -15,6 +15,7 @@ builddeps  :
     - pkgconfig(gl)
     - pkgconfig(libhsakmt)
     - pkgconfig(x11-xcb)
+    - rocminfo
     - rocm-cmake
     - rocm-compilersupport-devel
     - rocm-device-libs-devel
@@ -41,7 +42,8 @@ setup      : |
         -DHIP_COMMON_DIR=%workdir%/HIP-rocm-%version% \
         -DCMAKE_INSTALL_LIBDIR=%libdir% \
         -DHIP_COMPILER=clang \
-        -DHIP_VERSION_BUILD_ID=0
+        -DHIP_VERSION_BUILD_ID=0 \
+        -DROCM_DIR=%PREFIX%
 build      : |
     cd hipamd-rocm-%version%/build
     %make

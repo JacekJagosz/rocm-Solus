@@ -46,6 +46,7 @@ builddeps  :
     - pkgconfig(d3d)
     - pkgconfig(gl)
     - pkgconfig(libhsakmt)
+    - pkgconfig(numa)
     - pkgconfig(x11-xcb)
     - rocm-cmake
     - rocm-compilersupport-devel
@@ -73,7 +74,8 @@ setup      : |
         -DROCM_PATH=%PREFIX% \
         -DROCCLR_STANDALONE=ON \
         -DROCCLR_PATH="%workdir%/ROCclr-rocm-%version%" \
-        -DBUILD_ICD=OFF
+        -DBUILD_ICD=OFF \
+        -DROCM_DIR=%PREFIX%
 build      : |
     %make
 install    : |

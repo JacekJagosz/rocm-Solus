@@ -12,6 +12,7 @@ summary    : ROCm Application for Reporting System Info
 description: |
     ROCm Application for Reporting System Info
 builddeps  :
+    - rocm-cmake
     - rocm-runtime-devel
 setup      : |
     %apply_patches
