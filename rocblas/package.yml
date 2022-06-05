@@ -16,6 +16,7 @@ builddeps  :
     - pkgconfig(libhsakmt)
     - perl-file-which
     - pyyaml
+    - rocminfo
     - rocm-cmake
     - rocm-compilersupport-devel
     - rocm-device-libs-devel
@@ -30,12 +31,14 @@ environment: |
     #export DEVICE_LIB_PATH="/usr/lib64"
     #CXXFLAGS="$CXXFLAGS --rocm-device-lib-path=/usr/lib64/cmake/AMDDeviceLibs"
     export HIP_DEVICE_LIB_PATH="/usr/lib64/amdgcn/bitecode"
+    export ROCM_PATH=%PREFIX%
+    export ROCM_DIR=%PREFIX%
 setup      : |
 
     %cmake_ninja -Damd_comgr_DIR=/usr/lib64/cmake/amd_comgr \
-                -DTensile_CPU_THREADS=%JOBS% \
-                -DBUILD_WITH_TENSILE=OFF \
-                -DBUILD_WITH_TENSILE_HOST=OFF \
+                -DTensile_CPU_THREADS=6 \
+                -DBUILD_WITH_TENSILE=ON \
+                -DBUILD_WITH_TENSILE_HOST=ON \
                 -DTensile_LIBRARY_FORMAT=yaml \
                 -DTensile_LOGIC=asm_full \
                 -DTensile_CODE_OBJECT_VERSION=V3 \
@@ -48,7 +51,8 @@ setup      : |
                 -DTensile_COMPILER="hipcc" \
                 -DCMAKE_CXX_COMPILER=clang \
                 -DAMDGPU_TARGETS=gfx900 \
-                -DROCM_DIR=%PREFIX%
+                -DROCM_DIR=%PREFIX% \
+                -DROCM_PATH=%PREFIX%
                 #-DHIP_DEVICE_LIB_PATH=/usr/lib64/amdgcn/bitcode
                 #--rocm-device-lib-path=/usr/lib64/cmake/AMDDeviceLibs
                 #-DHSA_LIBRARIES=/usr/lib64/cmake

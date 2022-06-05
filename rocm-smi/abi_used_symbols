@@ -3,7 +3,6 @@ libc.so.6:__errno_location
 libc.so.6:__fprintf_chk
 libc.so.6:__isoc99_fscanf
 libc.so.6:__libc_single_threaded
-libc.so.6:__poll_chk
 libc.so.6:__snprintf_chk
 libc.so.6:__stack_chk_fail
 libc.so.6:clock_gettime
@@ -29,6 +28,7 @@ libc.so.6:munmap
 libc.so.6:open
 libc.so.6:opendir
 libc.so.6:perror
+libc.so.6:poll
 libc.so.6:pthread_mutex_consistent
 libc.so.6:pthread_mutex_destroy
 libc.so.6:pthread_mutex_init
@@ -92,7 +92,6 @@ libstdc++.so.6:_ZNSt11regex_errorD1Ev
 libstdc++.so.6:_ZNSt12__basic_fileIcED1Ev
 libstdc++.so.6:_ZNSt13basic_filebufIcSt11char_traitsIcEE4openEPKcSt13_Ios_Openmode
 libstdc++.so.6:_ZNSt13basic_filebufIcSt11char_traitsIcEE5closeEv
-libstdc++.so.6:_ZNSt13basic_filebufIcSt11char_traitsIcEE6setbufEPcl
 libstdc++.so.6:_ZNSt13basic_filebufIcSt11char_traitsIcEEC1Ev
 libstdc++.so.6:_ZNSt13basic_filebufIcSt11char_traitsIcEED1Ev
 libstdc++.so.6:_ZNSt13runtime_errorC2EPKc
@@ -114,7 +113,6 @@ libstdc++.so.6:_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE9_M_assignER
 libstdc++.so.6:_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE9_M_createERmm
 libstdc++.so.6:_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE9_M_mutateEmmPKcm
 libstdc++.so.6:_ZNSt7__cxx1115basic_stringbufIcSt11char_traitsIcESaIcEE7_M_syncEPcmm
-libstdc++.so.6:_ZNSt7__cxx1115basic_stringbufIcSt11char_traitsIcESaIcEE9showmanycEv
 libstdc++.so.6:_ZNSt7__cxx1118basic_stringstreamIcSt11char_traitsIcESaIcEED1Ev
 libstdc++.so.6:_ZNSt7__cxx1119basic_istringstreamIcSt11char_traitsIcESaIcEEC1ERKNS_12basic_stringIcS2_S3_EESt13_Ios_Openmode
 libstdc++.so.6:_ZNSt7__cxx1119basic_istringstreamIcSt11char_traitsIcESaIcEED1Ev

@@ -5,17 +5,17 @@
             <Name>Jacek Jagosz</Name>
             <Email>jacek.jagosz@outlook.com</Email>
         </Packager>
-        <License>GPL-2.0-or-later</License>
+        <License>NCSA</License>
         <PartOf>programming.devel</PartOf>
-        <Summary xml:lang="en">PLEASE FILL ME IN</Summary>
-        <Description xml:lang="en">PLEASE FILL ME IN
+        <Summary xml:lang="en">ROCm System Management Interface Library</Summary>
+        <Description xml:lang="en">ROCm System Management Interface Library
 </Description>
         <Archive type="binary" sha1sum="79eb0752a961b8e0d15c77d298c97498fbc89c5a">https://getsol.us/sources/README.Solus</Archive>
     </Source>
     <Package>
         <Name>rocm-smi</Name>
-        <Summary xml:lang="en">PLEASE FILL ME IN</Summary>
-        <Description xml:lang="en">PLEASE FILL ME IN
+        <Summary xml:lang="en">ROCm System Management Interface Library</Summary>
+        <Description xml:lang="en">ROCm System Management Interface Library
 </Description>
         <PartOf>programming.devel</PartOf>
         <Files>
@@ -29,8 +29,6 @@
             <Path fileType="data">/usr/oam/lib/liboam.so.1</Path>
             <Path fileType="data">/usr/oam/lib/liboam.so.1.0</Path>
             <Path fileType="data">/usr/rocm_smi/bindings/rsmiBindings.py</Path>
-            <Path fileType="data">/usr/rocm_smi/docs/README.md</Path>
-            <Path fileType="data">/usr/rocm_smi/docs/ROCm_SMI_Manual.pdf/refman.pdf</Path>
             <Path fileType="data">/usr/rocm_smi/include/rocm_smi/kfd_ioctl.h</Path>
             <Path fileType="data">/usr/rocm_smi/include/rocm_smi/rocm_smi.h</Path>
             <Path fileType="data">/usr/rocm_smi/include/rocm_smi/rocm_smi64Config.h</Path>
@@ -47,7 +45,7 @@
     <Package>
         <Name>rocm-smi-devel</Name>
         <Summary xml:lang="en">Development files for rocm-smi</Summary>
-        <Description xml:lang="en">PLEASE FILL ME IN
+        <Description xml:lang="en">ROCm System Management Interface Library
 </Description>
         <PartOf>programming.devel</PartOf>
         <RuntimeDependencies>
@@ -59,7 +57,7 @@
     </Package>
     <History>
         <Update release="1">
-            <Date>2022-05-22</Date>
+            <Date>2022-05-31</Date>
             <Version>5.1.0</Version>
             <Comment>Packaging update</Comment>
             <Name>Jacek Jagosz</Name>

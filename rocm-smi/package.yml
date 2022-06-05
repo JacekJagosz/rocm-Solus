@@ -9,6 +9,7 @@ summary    : ROCm System Management Interface Library
 description: |
     ROCm System Management Interface Library
 setup      : |
+    %apply_patches
     %cmake_ninja
 build      : |
     %ninja_build

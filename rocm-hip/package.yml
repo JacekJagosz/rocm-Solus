@@ -22,6 +22,8 @@ builddeps  :
     - rocm-rocclr-devel
     - rocm-opencl-devel
     - rocm-runtime-devel
+rundeps    :
+    - rocminfo
 environment: |
     export HIP_CLANG_PATH="/usr/bin"
 setup      : |
@@ -43,7 +45,7 @@ setup      : |
         -DCMAKE_INSTALL_LIBDIR=%libdir% \
         -DHIP_COMPILER=clang \
         -DHIP_VERSION_BUILD_ID=0 \
-        -DROCM_DIR=%PREFIX%
+        -DROCM_PATH=%PREFIX%
 build      : |
     cd hipamd-rocm-%version%/build
     %make
