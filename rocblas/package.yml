@@ -33,6 +33,7 @@ environment: |
     export HIP_DEVICE_LIB_PATH="/usr/lib64/amdgcn/bitecode"
     export ROCM_PATH=%PREFIX%
     export ROCM_DIR=%PREFIX%
+    #export HIP_INCLUDE_PATH="/usr/include"
 setup      : |
 
     %cmake_ninja -Damd_comgr_DIR=/usr/lib64/cmake/amd_comgr \

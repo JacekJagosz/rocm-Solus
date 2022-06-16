@@ -3,3 +3,4 @@
 0001-Use-installed-rocclr-if-available.patch
 0002-Fix-CL-icd-header-include.patch
 0001-Use-GNUInstallDirs.patch
+0009-devicelib-searchpath.patch

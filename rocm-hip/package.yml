@@ -29,6 +29,9 @@ environment: |
 setup      : |
     tar -xvzf $sources/HIP.tar.gz
     tar -xvzf $sources/hipamd.tar.gz
+    pushd HIP-rocm-%version%
+    %patch -p1 < $pkgfiles/0007-isystem-removal.patch
+    popd
     cd hipamd-rocm-%version%
     %apply_patches
 
@@ -59,3 +62,6 @@ install    : |
     #make hip-config.cmake less broken, allowing to build stuff that relies on hip
     sed -i 's|${_IMPORT_PREFIX}/../include|${_IMPORT_PREFIX}/include|g' %installroot%%libdir%/cmake/hip/hip-config.cmake
     sed -i 's|"${ROCM_PATH}/llvm"|"/usr"|g' %installroot%%libdir%/cmake/hip/hip-config.cmake
+
+    #https://salsa.debian.org/rocm-team/rocm-hipamd/-/blob/master/debian/patches/0003-hip-config.cmake.patch
+    sed -i 's|"${AMD_DEVICE_LIBS_PREFIX}/lib"|"${AMD_DEVICE_LIBS_PREFIX}"|g' %installroot%%libdir%/cmake/hip/hip-config.cmake
