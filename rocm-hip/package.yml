@@ -1,11 +1,11 @@
 name       : rocm-hip
-version    : 5.1.0
+version    : 5.1.3
 release    : 1
 source     :
-    - https://github.com/ROCm-Developer-Tools/ROCclr/archive/refs/tags/rocm-5.1.0.tar.gz#ROCclr.tar.gz : f4f265604b534795a275af902b2c814f416434d9c9e16db81b3ed5d062187dfa
-    - https://github.com/RadeonOpenCompute/ROCm-OpenCL-Runtime/archive/refs/tags/rocm-5.1.0.tar.gz#ROCm-OpenCL-Runtime.tar.gz : 362d81303048cf7ed5d2f69fb65ed65425bc3da4734fff83e3b8fbdda51b0927
-    - https://github.com/ROCm-Developer-Tools/hipamd/archive/refs/tags/rocm-5.1.0.tar.gz#hipamd.tar.gz : 77984854bfe00f938353fe4c7604d09967eaf5c609d05f1e6423d3c3dea86e61
-    - https://github.com/ROCm-Developer-Tools/HIP/archive/refs/tags/rocm-5.1.0.tar.gz#HIP.tar.gz : 47e542183699f4005c48631d96f6a1fbdf27e07ad3402ccd7b5f707c2c602266
+    - https://github.com/ROCm-Developer-Tools/ROCclr/archive/refs/tags/rocm-5.1.3.tar.gz#ROCclr-5.1.3.tar.gz : ddee63cdc6515c90bab89572b13e1627b145916cb8ede075ef8446cbb83f0a48
+    - https://github.com/RadeonOpenCompute/ROCm-OpenCL-Runtime/archive/refs/tags/rocm-5.1.3.tar.gz#ROCm-OpenCL-Runtime-5.1.3.tar.gz : 44a7fac721abcd93470e1a7e466bdea0c668c253dee93e4f1ea9a72dbce4ba31
+    - https://github.com/ROCm-Developer-Tools/hipamd/archive/refs/tags/rocm-5.1.3.tar.gz#hipamd-5.1.3.tar.gz : 707f2217f0e7aeb62d7b76830a271056d665542bf5f7a54e40adf4d5f299ca93
+    - https://github.com/ROCm-Developer-Tools/HIP/archive/refs/tags/rocm-5.1.3.tar.gz#HIP-5.1.3.tar.gz : ce755ee6e407904eba3f6b3c9efcdd48eb4f58a26b06e1892166d05f19a75973
 license    : MIT
 component  : programming.devel
 clang      : yes
@@ -28,14 +28,14 @@ rundeps    :
 environment: |
     export HIP_CLANG_PATH="/usr/bin"
 setup      : |
-    tar -xvzf $sources/ROCclr.tar.gz
-    tar -xvzf $sources/ROCm-OpenCL-Runtime.tar.gz
-    tar -xvzf $sources/hipamd.tar.gz
-    tar -xvzf $sources/HIP.tar.gz
+    tar -xvzf $sources/ROCclr-%version%.tar.gz
+    tar -xvzf $sources/ROCm-OpenCL-Runtime-%version%.tar.gz
+    tar -xvzf $sources/hipamd-%version%.tar.gz
+    tar -xvzf $sources/HIP-%version%.tar.gz
     pushd ROCclr-rocm-%version%
     %patch -p1 < $pkgfiles/0001-enable-gfx800.patch
     %patch -p1 < $pkgfiles/0001-SWDEV-323669-Fix-linux-arch-detection.patch
-    echo "set_target_properties(rocclr PROPERTIES VERSION 5.1.0 SOVERSION 5.1)" \
+    echo "set_target_properties(rocclr PROPERTIES VERSION 5.1.3 SOVERSION 5.1)" \
     >> cmake/ROCclr.cmake
     popd
     pushd ROCm-OpenCL-Runtime-rocm-%version%
@@ -43,7 +43,7 @@ setup      : |
     %patch -p1 < $pkgfiles/0002-SWDEV-321116-Allow-disabling-ICD-loader.patch
     %patch -p1 < $pkgfiles/0003-SWDEV-321116-Drop-unnecessary-ICD-include.patch
     %patch -p1 < $pkgfiles/0004-SWDEV-336248-Don-t-exclude-cl_egl.h-from-install.patch
-    echo "set_target_properties(cltrace PROPERTIES VERSION 5.1.0 SOVERSION 5.1)" \
+    echo "set_target_properties(cltrace PROPERTIES VERSION 5.1.3 SOVERSION 5.1)" \
     >> tools/cltrace/CMakeLists.txt
     ls -d khronos/* | grep -v headers | xargs rm -r
     ls -d khronos/headers/* | grep -v opencl2.2 | xargs rm -r
