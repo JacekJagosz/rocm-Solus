@@ -1,9 +1,3 @@
-UNKNOWN:_ZN3amd10PlatformID8PlatformE
-UNKNOWN:_ZN3amd11GLFunctions4initEll
-UNKNOWN:_ZN3amd11GLFunctionsC1EPvb
-UNKNOWN:_ZN3amd11GLFunctionsD1Ev
-UNKNOWN:_ZN3amd19ICDDispatchedObject18icdVendorDispatch_E
-UNKNOWN:_ZNK3amd15LiquidFlashFile13transferBlockEbPvmmmm
 ld-linux-x86-64.so.2:__tls_get_addr
 libOpenCL.so.1:clBuildProgram
 libOpenCL.so.1:clCreateContext
@@ -119,7 +113,6 @@ libc.so.6:strtol
 libc.so.6:strtoul
 libc.so.6:sysconf
 libc.so.6:sysinfo
-libc.so.6:tolower
 libc.so.6:unlink
 libc.so.6:usleep
 libc.so.6:vfork
