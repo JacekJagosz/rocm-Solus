@@ -71,7 +71,8 @@ setup      : |
         -DCMAKE_INSTALL_LIBDIR=%libdir% \
         -DHIP_COMPILER=clang \
         -DHIP_VERSION_BUILD_ID=0 \
-        -DROCM_PATH=%PREFIX%
+        -DROCM_PATH=%PREFIX% \
+        -DCMAKE_HIP_ARCHITECTURES=gfx906
 build      : |
     cd hipamd-rocm-%version%/build
     %make
@@ -88,3 +89,6 @@ install    : |
 
     #https://salsa.debian.org/rocm-team/rocm-hipamd/-/blob/master/debian/patches/0003-hip-config.cmake.patch
     sed -i 's|"${AMD_DEVICE_LIBS_PREFIX}/lib"|"${AMD_DEVICE_LIBS_PREFIX}"|g' %installroot%%libdir%/cmake/hip/hip-config.cmake
+
+    # https://github.com/ROCm-Developer-Tools/HIP/issues/2678
+    sed -i '/__noinline__/d' %installroot%/usr/include/hip/amd_detail/host_defines.h

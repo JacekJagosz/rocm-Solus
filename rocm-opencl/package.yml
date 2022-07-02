@@ -46,10 +46,11 @@ setup      : |
     %cmake -Wno-dev  \
         -DAMD_OPENCL_PATH="%workdir%" \
         -DROCM_PATH=%PREFIX% \
-        -DROCCLR_STANDALONE=ON \
         -DROCCLR_PATH="%workdir%/ROCclr-rocm-%version%" \
         -DBUILD_ICD=OFF \
-        -DROCM_DIR=%PREFIX%
+        -DROCM_DIR=%PREFIX% \
+        -DCMAKE_HIP_ARCHITECTURES=gfx906 \
+        -DUSE_COMGR_LIBRARY=ON
 build      : |
     %make
 install    : |
