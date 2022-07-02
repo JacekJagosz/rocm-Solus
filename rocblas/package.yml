@@ -3,13 +3,13 @@ version    : 5.1.3
 release    : 1
 source     :
     - https://github.com/ROCmSoftwarePlatform/rocBLAS/archive/refs/tags/rocm-5.1.3.tar.gz : 915374431db8f0cecdc2bf318a0ad33c3a8eceedc461d7a06b92ccb02b07313c
-license    : GPL-2.0-or-later # CHECK ME
+license    : MIT
 component  : programming.library
 clang      : yes
 networking : yes
-summary    : PLEASE FILL ME IN
+summary    : Next generation BLAS implementation for ROCm platform
 description: |
-    PLEASE FILL ME IN
+    rocBLAS is the AMD library for Basic Linear Algebra Subprograms (BLAS) on the ROCm platform. It is implemented in the HIP programming language and optimized for AMD GPUs.
 builddeps  :
     - pkgconfig(msgpack)
     - git
@@ -26,9 +26,6 @@ builddeps  :
     - rocm-smi-devel
     - virtualenv
 environment: |
-    #export HIP_PATH="/usr/lib64/cmake/hsa-runtime64"
-    #export DEVICE_LIB_PATH="/usr/lib64"
-    #CXXFLAGS="$CXXFLAGS --rocm-device-lib-path=/usr/lib64/cmake/AMDDeviceLibs"
     export ROCM_PATH=%PREFIX%
     export ROCM_DIR=%PREFIX%
 
@@ -41,8 +38,8 @@ environment: |
     export HSA_PATH=/usr/hsa
     export LLVM_PATH=/usr
     export HIP_CLANG_HCC_COMPAT_MODE=1
+    # https://github.com/ROCm-Developer-Tools/HIP/blob/rocm-5.1.x/docs/markdown/clang_options.md
     export CXXFLAGS="${CXXFLAGS/-fstack-protector-strong/} -fcf-protection=none"
-    #export HIP_INCLUDE_PATH="/usr/include"
 setup      : |
     %cmake_ninja -Wno-dev \
                 -Damd_comgr_DIR=/usr/lib64/cmake/amd_comgr \
@@ -64,14 +61,7 @@ setup      : |
                 -DAMDGPU_TARGETS='gfx906:xnack-' \
                 -DROCM_DIR=%PREFIX% \
                 -DROCM_PATH=%PREFIX%
-                #-DHIP_DEVICE_LIB_PATH=/usr/lib64/amdgcn/bitcode
-                #--rocm-device-lib-path=/usr/lib64/cmake/AMDDeviceLibs
-                #-DHSA_LIBRARIES=/usr/lib64/cmake
-                #-DAMDGPU_TARGETS=gfx90a
-                #-DROCM_PATH=%PREFIX%
 build      : |
-    #ls $HIP_DEVICE_LIB_PATH
-    #ls /usr/lib64/cmake/AMDDeviceLibs
     %ninja_build
 install    : |
     %ninja_install

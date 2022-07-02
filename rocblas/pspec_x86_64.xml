@@ -5,17 +5,17 @@
             <Name>Jacek Jagosz</Name>
             <Email>jacek.jagosz@outlook.com</Email>
         </Packager>
-        <License>GPL-2.0-or-later</License>
+        <License>MIT</License>
         <PartOf>programming.library</PartOf>
-        <Summary xml:lang="en">PLEASE FILL ME IN</Summary>
-        <Description xml:lang="en">PLEASE FILL ME IN
+        <Summary xml:lang="en">Next generation BLAS implementation for ROCm platform</Summary>
+        <Description xml:lang="en">rocBLAS is the AMD library for Basic Linear Algebra Subprograms (BLAS) on the ROCm platform. It is implemented in the HIP programming language and optimized for AMD GPUs.
 </Description>
         <Archive type="binary" sha1sum="79eb0752a961b8e0d15c77d298c97498fbc89c5a">https://getsol.us/sources/README.Solus</Archive>
     </Source>
     <Package>
         <Name>rocblas</Name>
-        <Summary xml:lang="en">PLEASE FILL ME IN</Summary>
-        <Description xml:lang="en">PLEASE FILL ME IN
+        <Summary xml:lang="en">Next generation BLAS implementation for ROCm platform</Summary>
+        <Description xml:lang="en">rocBLAS is the AMD library for Basic Linear Algebra Subprograms (BLAS) on the ROCm platform. It is implemented in the HIP programming language and optimized for AMD GPUs.
 </Description>
         <PartOf>programming.library</PartOf>
         <Files>
@@ -53,7 +53,7 @@
     <Package>
         <Name>rocblas-devel</Name>
         <Summary xml:lang="en">Development files for rocblas</Summary>
-        <Description xml:lang="en">PLEASE FILL ME IN
+        <Description xml:lang="en">rocBLAS is the AMD library for Basic Linear Algebra Subprograms (BLAS) on the ROCm platform. It is implemented in the HIP programming language and optimized for AMD GPUs.
 </Description>
         <PartOf>programming.devel</PartOf>
         <RuntimeDependencies>
