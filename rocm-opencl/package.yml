@@ -49,8 +49,8 @@ setup      : |
         -DROCCLR_PATH="%workdir%/ROCclr-rocm-%version%" \
         -DBUILD_ICD=OFF \
         -DROCM_DIR=%PREFIX% \
-        -DCMAKE_HIP_ARCHITECTURES=gfx906 \
-        -DUSE_COMGR_LIBRARY=ON
+        -DUSE_COMGR_LIBRARY=ON \
+        #-DCMAKE_HIP_ARCHITECTURES=gfx906
 build      : |
     %make
 install    : |

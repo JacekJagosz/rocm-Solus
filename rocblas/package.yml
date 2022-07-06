@@ -58,9 +58,9 @@ setup      : |
                 -DCMAKE_PREFIX_PATH="/usr/include;/usr/lib64/cmake;/usr/share/rocm/cmake;/usr/lib64/amdgcn" \
                 -DTensile_COMPILER="hipcc" \
                 -DCMAKE_CXX_COMPILER=/usr/bin/hipcc \
-                -DAMDGPU_TARGETS='gfx906:xnack-' \
                 -DROCM_DIR=%PREFIX% \
-                -DROCM_PATH=%PREFIX%
+                -DROCM_PATH=%PREFIX% \
+                #-DAMDGPU_TARGETS='gfx906:xnack-' #limiting compilation to just one GPU speeds up build time massively
 build      : |
     %ninja_build
 install    : |

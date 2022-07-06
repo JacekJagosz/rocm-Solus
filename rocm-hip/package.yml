@@ -72,7 +72,7 @@ setup      : |
         -DHIP_COMPILER=clang \
         -DHIP_VERSION_BUILD_ID=0 \
         -DROCM_PATH=%PREFIX% \
-        -DCMAKE_HIP_ARCHITECTURES=gfx906
+        #-DCMAKE_HIP_ARCHITECTURES=gfx906
 build      : |
     cd hipamd-rocm-%version%/build
     %make
