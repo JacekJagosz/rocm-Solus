@@ -170,6 +170,7 @@ libLLVM-14.so:_ZN4llvm11AttrBuilderC1ERNS_11LLVMContextENS_12AttributeSetE
 libLLVM-14.so:_ZN4llvm11BitCastInstC1EPNS_5ValueEPNS_4TypeERKNS_5TwineEPNS_10BasicBlockE
 libLLVM-14.so:_ZN4llvm11BitCastInstC1EPNS_5ValueEPNS_4TypeERKNS_5TwineEPNS_11InstructionE
 libLLVM-14.so:_ZN4llvm11BuryPointerEPKv
+libLLVM-14.so:_ZN4llvm11ConstantInt19isValueValidForTypeEPNS_4TypeEm
 libLLVM-14.so:_ZN4llvm11ConstantInt3getEPNS_11IntegerTypeEmb
 libLLVM-14.so:_ZN4llvm11ConstantInt3getEPNS_4TypeERKNS_5APIntE
 libLLVM-14.so:_ZN4llvm11ConstantInt3getEPNS_4TypeEmb
@@ -244,6 +245,7 @@ libLLVM-14.so:_ZN4llvm11raw_ostream16SetBufferAndModeEPcmNS0_10BufferKindE
 libLLVM-14.so:_ZN4llvm11raw_ostream5writeEPKcm
 libLLVM-14.so:_ZN4llvm11raw_ostream5writeEh
 libLLVM-14.so:_ZN4llvm11raw_ostream6indentEj
+libLLVM-14.so:_ZN4llvm11raw_ostream9write_hexEy
 libLLVM-14.so:_ZN4llvm11raw_ostreamD2Ev
 libLLVM-14.so:_ZN4llvm11raw_ostreamlsENS0_6ColorsE
 libLLVM-14.so:_ZN4llvm11raw_ostreamlsEPKv
@@ -601,6 +603,7 @@ libLLVM-14.so:_ZN4llvm18createWasmStreamerERNS_9MCContextEOSt10unique_ptrINS_12M
 libLLVM-14.so:_ZN4llvm18format_object_base4homeEv
 libLLVM-14.so:_ZN4llvm18getAsSignedIntegerENS_9StringRefEjRx
 libLLVM-14.so:_ZN4llvm18getNumBytesForUTF8Eh
+libLLVM-14.so:_ZN4llvm18isCurrentDebugTypeEPKc
 libLLVM-14.so:_ZN4llvm18isPrefixedHexStyleENS_13HexPrintStyleE
 libLLVM-14.so:_ZN4llvm18report_fatal_errorENS_9StringRefEb
 libLLVM-14.so:_ZN4llvm18report_fatal_errorEPKcb
@@ -637,6 +640,7 @@ libLLVM-14.so:_ZN4llvm20CrashRecoveryContext12throwIfCrashEi
 libLLVM-14.so:_ZN4llvm20CrashRecoveryContext15registerCleanupEPNS_27CrashRecoveryContextCleanupE
 libLLVM-14.so:_ZN4llvm20CrashRecoveryContext17RunSafelyOnThreadENS_12function_refIFvvEEEj
 libLLVM-14.so:_ZN4llvm20CrashRecoveryContext17unregisterCleanupEPNS_27CrashRecoveryContextCleanupE
+libLLVM-14.so:_ZN4llvm20CrashRecoveryContext21isRecoveringFromCrashEv
 libLLVM-14.so:_ZN4llvm20CrashRecoveryContext9RunSafelyENS_12function_refIFvvEEE
 libLLVM-14.so:_ZN4llvm20CrashRecoveryContextC1Ev
 libLLVM-14.so:_ZN4llvm20CrashRecoveryContextD1Ev
@@ -677,6 +681,7 @@ libLLVM-14.so:_ZN4llvm21formatted_raw_ostream15ComputePositionEPKcm
 libLLVM-14.so:_ZN4llvm21getConstantStringInfoEPKNS_5ValueERNS_9StringRefEmb
 libLLVM-14.so:_ZN4llvm21logAllUnhandledErrorsENS_5ErrorERNS_11raw_ostreamENS_5TwineE
 libLLVM-14.so:_ZN4llvm22ConstantDataSequential7getImplENS_9StringRefEPNS_4TypeE
+libLLVM-14.so:_ZN4llvm22ConstrainedFPIntrinsic7classofEPKNS_13IntrinsicInstE
 libLLVM-14.so:_ZN4llvm22ConvertCodePointToUTF8EjRPc
 libLLVM-14.so:_ZN4llvm22FoldingSetIteratorImpl7advanceEv
 libLLVM-14.so:_ZN4llvm22FoldingSetIteratorImplC2EPPv
@@ -715,6 +720,7 @@ libLLVM-14.so:_ZN4llvm24LLVMRemarkSetupFileError2IDE
 libLLVM-14.so:_ZN4llvm24StandardInstrumentations17registerCallbacksERNS_28PassInstrumentationCallbacksEPNS_15AnalysisManagerINS_8FunctionEJEEE
 libLLVM-14.so:_ZN4llvm24StandardInstrumentationsC1EbbNS_16PrintPassOptionsE
 libLLVM-14.so:_ZN4llvm24ThinLTOBitcodeWriterPass3runERNS_6ModuleERNS_15AnalysisManagerIS1_JEEE
+libLLVM-14.so:_ZN4llvm24convertRoundingModeToStrENS_12RoundingModeE
 libLLVM-14.so:_ZN4llvm24convertUTF16ToUTF8StringENS_8ArrayRefIcEERNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEEE
 libLLVM-14.so:_ZN4llvm24createLowerTypeTestsPassEPNS_18ModuleSummaryIndexEPKS0_b
 libLLVM-14.so:_ZN4llvm24createRewriteSymbolsPassERNSt7__cxx114listISt10unique_ptrINS_14SymbolRewriter17RewriteDescriptorESt14default_deleteIS4_EESaIS7_EEE
@@ -725,6 +731,7 @@ libLLVM-14.so:_ZN4llvm25ModuleMemorySanitizerPass3runERNS_6ModuleERNS_15Analysis
 libLLVM-14.so:_ZN4llvm25ModuleThreadSanitizerPass3runERNS_6ModuleERNS_15AnalysisManagerIS1_JEEE
 libLLVM-14.so:_ZN4llvm25createObjCARCContractPassEv
 libLLVM-14.so:_ZN4llvm25createPGOFuncNameMetadataERNS_8FunctionENS_9StringRefE
+libLLVM-14.so:_ZN4llvm25llvm_unreachable_internalEPKcS1_j
 libLLVM-14.so:_ZN4llvm26LLVMRemarkSetupFormatError2IDE
 libLLVM-14.so:_ZN4llvm26ModuleAddressSanitizerPass13printPipelineERNS_11raw_ostreamENS_12function_refIFNS_9StringRefES4_EEE
 libLLVM-14.so:_ZN4llvm26ModuleAddressSanitizerPass3runERNS_6ModuleERNS_15AnalysisManagerIS1_JEEE
@@ -745,6 +752,7 @@ libLLVM-14.so:_ZN4llvm28TargetLibraryInfoWrapperPassC1ERKNS_21TargetLibraryInfoI
 libLLVM-14.so:_ZN4llvm28getModuleSummaryIndexForFileENS_9StringRefEb
 libLLVM-14.so:_ZN4llvm28getTimeTraceProfilerInstanceEv
 libLLVM-14.so:_ZN4llvm28setupLLVMOptimizationRemarksERNS_11LLVMContextENS_9StringRefES2_S2_bNS_8OptionalImEE
+libLLVM-14.so:_ZN4llvm29convertExceptionBehaviorToStrENS_2fp17ExceptionBehaviorE
 libLLVM-14.so:_ZN4llvm29createAlwaysInlinerLegacyPassEb
 libLLVM-14.so:_ZN4llvm29createMemProfilerFunctionPassEv
 libLLVM-14.so:_ZN4llvm29createWriteThinLTOBitcodePassERNS_11raw_ostreamEPS0_
@@ -1021,7 +1029,6 @@ libLLVM-14.so:_ZN4llvm4json7OStream14attributeBeginENS_9StringRefE
 libLLVM-14.so:_ZN4llvm4json7OStream5valueERKNS0_5ValueE
 libLLVM-14.so:_ZN4llvm4json7OStream8arrayEndEv
 libLLVM-14.so:_ZN4llvm4json7OStream9objectEndEv
-libLLVM-14.so:_ZN4llvm4json7fixUTF8B5cxx11ENS_9StringRefE
 libLLVM-14.so:_ZN4llvm4outsEv
 libLLVM-14.so:_ZN4llvm4yaml11MappingNode9incrementEv
 libLLVM-14.so:_ZN4llvm4yaml12KeyValueNode6getKeyEv
@@ -1390,6 +1397,7 @@ libLLVM-14.so:_ZN4llvm9DIBuilderC1ERNS_6ModuleEbPNS_13DICompileUnitE
 libLLVM-14.so:_ZN4llvm9DWARFUnit19extractDIEsIfNeededEb
 libLLVM-14.so:_ZN4llvm9DWARFUnit20collectAddressRangesEv
 libLLVM-14.so:_ZN4llvm9DWARFUnit22tryExtractDIEsIfNeededEb
+libLLVM-14.so:_ZN4llvm9DebugFlagE
 libLLVM-14.so:_ZN4llvm9ErrorList2IDE
 libLLVM-14.so:_ZN4llvm9FenceInstC1ERNS_11LLVMContextENS_14AtomicOrderingEhPNS_11InstructionE
 libLLVM-14.so:_ZN4llvm9InlineAsm3getEPNS_12FunctionTypeENS_9StringRefES3_bbNS0_10AsmDialectEb
@@ -1434,6 +1442,7 @@ libLLVM-14.so:_ZN4llvmlsERNS_11raw_ostreamERKNS_12VersionTupleE
 libLLVM-14.so:_ZN4llvmlsERNS_11raw_ostreamERKNS_14FaultMapParserE
 libLLVM-14.so:_ZNK4llvm10AllocaInst14isStaticAllocaEv
 libLLVM-14.so:_ZNK4llvm10BasicBlock10getContextEv
+libLLVM-14.so:_ZNK4llvm10BasicBlock12isEntryBlockEv
 libLLVM-14.so:_ZNK4llvm10BasicBlock12isLandingPadEv
 libLLVM-14.so:_ZNK4llvm10BasicBlock13getTerminatorEv
 libLLVM-14.so:_ZNK4llvm10BasicBlock14getFirstNonPHIEv
@@ -1554,6 +1563,8 @@ libLLVM-14.so:_ZNK4llvm2cl6parserIyE15printOptionDiffERKNS0_6OptionEyNS0_11Optio
 libLLVM-14.so:_ZNK4llvm30DiagnosticInfoOptimizationBase6getMsgB5cxx11Ev
 libLLVM-14.so:_ZNK4llvm30DiagnosticInfoWithLocationBase11getLocationERNS_9StringRefERjS3_
 libLLVM-14.so:_ZNK4llvm30DiagnosticInfoWithLocationBase15getAbsolutePathB5cxx11Ev
+libLLVM-14.so:_ZNK4llvm3LLT5printERNS_11raw_ostreamE
+libLLVM-14.so:_ZNK4llvm3cfg6UpdateIPNS_10BasicBlockEE4dumpEv
 libLLVM-14.so:_ZNK4llvm3lto3LTO11getMaxTasksEv
 libLLVM-14.so:_ZNK4llvm3lto9InputFile7getNameEv
 libLLVM-14.so:_ZNK4llvm3opt12InputArgList9MakeIndexENS_9StringRefE
@@ -1596,8 +1607,10 @@ libLLVM-14.so:_ZNK4llvm3vfs6Status13isRegularFileEv
 libLLVM-14.so:_ZNK4llvm4Type11isIntegerTyEj
 libLLVM-14.so:_ZNK4llvm4Type12getPointerToEj
 libLLVM-14.so:_ZNK4llvm4Type15getFltSemanticsEv
+libLLVM-14.so:_ZNK4llvm4Type17isOpaquePointerTyEv
 libLLVM-14.so:_ZNK4llvm4Type18isSizedDerivedTypeEPNS_15SmallPtrSetImplIPS0_EE
 libLLVM-14.so:_ZNK4llvm4Type19getScalarSizeInBitsEv
+libLLVM-14.so:_ZNK4llvm4Type22canLosslesslyBitCastToEPS0_
 libLLVM-14.so:_ZNK4llvm4Type22getPrimitiveSizeInBitsEv
 libLLVM-14.so:_ZNK4llvm4Type5printERNS_11raw_ostreamEbb
 libLLVM-14.so:_ZNK4llvm4Type6isIEEEEv
@@ -1655,6 +1668,7 @@ libLLVM-14.so:_ZNK4llvm5Value10getContextEv
 libLLVM-14.so:_ZNK4llvm5Value10getNumUsesEv
 libLLVM-14.so:_ZNK4llvm5Value17stripPointerCastsEv
 libLLVM-14.so:_ZNK4llvm5Value27stripPointerCastsAndAliasesEv
+libLLVM-14.so:_ZNK4llvm5Value30assertModuleIsMaterializedImplEv
 libLLVM-14.so:_ZNK4llvm5Value7getNameEv
 libLLVM-14.so:_ZNK4llvm6APSInt7ProfileERNS_16FoldingSetNodeIDE
 libLLVM-14.so:_ZNK4llvm6Module11getFunctionENS_9StringRefE
@@ -1761,6 +1775,7 @@ libLLVM-14.so:_ZNK4llvm8TypeSizecvmEv
 libLLVM-14.so:_ZNK4llvm8coverage21CounterMappingContext4dumpERKNS0_7CounterERNS_11raw_ostreamE
 libLLVM-14.so:_ZNK4llvm9Attribute14getValueAsBoolEv
 libLLVM-14.so:_ZNK4llvm9InlineAsm15getFunctionTypeEv
+libLLVM-14.so:_ZNK4llvm9SMTSolver4dumpEv
 libLLVM-14.so:_ZNK4llvm9SourceMgr23FindBufferContainingLocENS_5SMLocE
 libLLVM-14.so:_ZNK4llvm9StringRef12find_last_ofES0_m
 libLLVM-14.so:_ZNK4llvm9StringRef12getAsIntegerEjRNS_5APIntE
@@ -1816,9 +1831,9 @@ libLLVM-14.so:_ZTVN4llvm2cl6parserINSt7__cxx1112basic_stringIcSt11char_traitsIcE
 libLLVM-14.so:_ZTVN4llvm2cl6parserIbEE
 libLLVM-14.so:_ZTVN4llvm2cl6parserIyEE
 libLLVM-14.so:_ZTVN4llvm3opt12InputArgListE
-libLLVM-14.so:_ZTVN4llvm3opt14DerivedArgListE
 libLLVM-14.so:_ZTVN4llvm9ErrorListE
 libLLVM-14.so:_ZTVN4llvm9symbolize11LLVMPrinterE
+libc.so.6:__assert_fail
 libc.so.6:__cxa_atexit
 libc.so.6:__errno_location
 libc.so.6:__libc_single_threaded
@@ -1848,6 +1863,7 @@ libc.so.6:memmove
 libc.so.6:memset
 libc.so.6:printf
 libc.so.6:pthread_mutex_lock
+libc.so.6:pthread_mutex_trylock
 libc.so.6:pthread_mutex_unlock
 libc.so.6:pthread_once
 libc.so.6:putchar
@@ -1929,8 +1945,6 @@ libstdc++.so.6:_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE14_M_replace
 libstdc++.so.6:_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE4swapERS4_
 libstdc++.so.6:_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE5eraseEN9__gnu_cxx17__normal_iteratorIPKcS4_EES9_
 libstdc++.so.6:_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE5eraseEmm
-libstdc++.so.6:_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE6appendEPKc
-libstdc++.so.6:_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE6appendEPKcm
 libstdc++.so.6:_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE6resizeEmc
 libstdc++.so.6:_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE7replaceEN9__gnu_cxx17__normal_iteratorIPKcS4_EES9_S8_
 libstdc++.so.6:_ZNSt7__cxx1112basic_stringIcSt11char_traitsIcESaIcEE7reserveEm
@@ -1986,7 +2000,6 @@ libstdc++.so.6:_ZSt7nothrow
 libstdc++.so.6:_ZSt9terminatev
 libstdc++.so.6:_ZSt9use_facetINSt7__cxx117collateIcEEERKT_RKSt6locale
 libstdc++.so.6:_ZSt9use_facetISt5ctypeIcEERKT_RKSt6locale
-libstdc++.so.6:_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_a
 libstdc++.so.6:_ZTINSt3_V214error_categoryE
 libstdc++.so.6:_ZTINSt6locale5facetE
 libstdc++.so.6:_ZTINSt6thread6_StateE

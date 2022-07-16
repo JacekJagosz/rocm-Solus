@@ -25,3 +25,6 @@ build      : |
     %make
 install    : |
     %make_install
+
+    #remove textfiles that are not useful for the users
+    rm -r %installroot%/usr/share

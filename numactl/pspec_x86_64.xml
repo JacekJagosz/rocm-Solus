@@ -57,7 +57,7 @@
     </Package>
     <History>
         <Update release="1">
-            <Date>2022-05-29</Date>
+            <Date>2022-07-14</Date>
             <Version>2.0.14</Version>
             <Comment>Packaging update</Comment>
             <Name>Jacek Jagosz</Name>
