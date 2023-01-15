@@ -25,6 +25,8 @@ builddeps  :
     - rocm-runtime-devel
 rundeps    :
     - rocminfo
+    - rocm-hip-devel :
+        - llvm-clang
 environment: |
     export HIP_CLANG_PATH="/usr/bin"
 setup      : |
