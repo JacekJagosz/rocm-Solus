@@ -1,0 +1,49 @@
+name       : roctracer
+version    : 5.1.3
+release    : 1
+source     :
+    - https://github.com/ROCm-Developer-Tools/roctracer/archive/refs/tags/rocm-5.1.3.tar.gz : 45f19875c15eb609b993788b47fd9c773b4216074749d7744f3a671be17ef33c
+license    : MIT
+component  : programming.library
+summary    : ROCm Tracer Callback/Activity Library for Performance tracing AMD GPU's
+description: |
+    Runtimes Generic Callback/Activity APIs. The goal of the implementation is to provide a generic independent from specific runtime profiler to trace API and asyncronous activity. The API provides functionality for registering the runtimes API callbacks and asyncronous activity records pool support.
+clang      : yes
+builddeps  :
+    - pkgconfig(libhsakmt)
+    - pkgconfig(numa)
+    - rocminfo
+    - rocm-cmake
+    - rocm-compilersupport-devel
+    - rocm-device-libs-devel
+    - rocm-hip-devel
+    - rocm-opencl-devel
+    - rocm-runtime-devel
+    - rocm-smi-devel
+    - rocprim-devel
+    - rocprofiler
+    - git
+    - python-ply
+    - python-cppheaderparser
+environment: |
+    export ROCM_PATH=%PREFIX%
+    export ROCM_DIR=%PREFIX%
+    export HIP_PLATFORM=amd
+    export HIP_RUNTIME=rocclr
+    export HIP_COMPILER=clang
+    export HIP_CLANG_PATH=/usr/bin
+    export DEVICE_LIB_PATH=/usr/lib64/amdgcn/bitcode
+    export HSA_PATH=/usr/hsa
+    export LLVM_PATH=/usr
+    # roctracer specific
+    export HIP_PATH=/usr
+setup      : |
+    %patch -p1 < $pkgfiles/glibc_2_34.patch
+    %cmake_ninja -DCMAKE_CXX_COMPILER=/usr/bin/hipcc \
+                 -DHIP_PATH=/usr \
+                 -DBUILD_FILE_REORG_BACKWARD_COMPATIBILITY=ON \
+                 #-DAMDGPU_TARGETS="gfx1030" \
+build      : |
+    %ninja_build
+install    : |
+    %ninja_install

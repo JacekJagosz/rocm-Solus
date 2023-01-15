@@ -1,0 +1,51 @@
+name       : rocprofiler
+version    : 5.1.3
+release    : 1
+source     :
+    - https://github.com/ROCm-Developer-Tools/rocprofiler/archive/refs/tags/rocm-5.1.3.tar.gz : eca7be451c7bf000fd9c75683e7f5dfbed32dbb385b5ac685d2251ee8c3abc96
+    - https://github.com/ROCm-Developer-Tools/roctracer/archive/refs/tags/rocm-5.1.3.tar.gz#roctracer-5.1.3.tar.gz : 45f19875c15eb609b993788b47fd9c773b4216074749d7744f3a671be17ef33c
+license    : MIT
+component  : programming.library
+summary    : ROCm profiler library with perf-counters and derived metrics.
+description: |
+    Profiling with metrics and traces based on perfcounters (PMC) and traces (SPM). Implementation is based on AqlProfile HSA extension.
+patterns   : /*
+clang      : yes
+builddeps  :
+    - pkgconfig(libhsakmt)
+    - pkgconfig(numa) # Can't disable tests...
+    - pkgconfig(libdrm_amdgpu)
+    - rocminfo
+    - rocm-cmake
+    - rocm-compilersupport-devel
+    - rocm-device-libs-devel
+    - rocm-hip-devel
+    - rocm-opencl-devel
+    - rocm-runtime-devel
+    - rocm-smi-devel
+    - rocprim-devel
+    - git
+environment: |
+    export ROCM_PATH=%PREFIX%
+    export ROCM_DIR=%PREFIX%
+    export HIP_PLATFORM=amd
+    export HIP_RUNTIME=rocclr
+    export HIP_COMPILER=clang
+    export HIP_CLANG_PATH=/usr/bin
+    export DEVICE_LIB_PATH=/usr/lib64/amdgcn/bitcode
+    export HSA_PATH=/usr/hsa
+    export LLVM_PATH=/usr
+    export ROCM_ROOT_DIR=%PREFIX%
+    export ROCTRACER_DIR=$sources/roctracer-rocm-%version%
+setup      : |
+    tar xf $sources/roctracer-%version%.tar.gz -C $sources
+    ls $ROCTRACER_DIR
+    %cmake_ninja -DCMAKE_CXX_COMPILER=/usr/bin/hipcc \
+                 -DHIP_PATH=/usr \
+                 -DPROF_API_HEADER_PATH="$ROCTRACER_DIR/inc/ext" \
+                 -DBUILD_TESTING=OFF \
+                 #-DAMDGPU_TARGETS="gfx1030"
+build      : |
+    %ninja_build
+install    : |
+    %ninja_install
