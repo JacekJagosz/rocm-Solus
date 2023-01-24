@@ -1,4 +1,5 @@
 **/*.eopkg
 /common
 Makefile*
+!*/Makefile*
 llvm

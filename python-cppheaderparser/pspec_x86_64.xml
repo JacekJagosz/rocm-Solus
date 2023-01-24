@@ -36,7 +36,7 @@
     </Package>
     <History>
         <Update release="1">
-            <Date>2023-01-15</Date>
+            <Date>2023-01-23</Date>
             <Version>2.7.4</Version>
             <Comment>Packaging update</Comment>
             <Name>Jacek Jagosz</Name>
