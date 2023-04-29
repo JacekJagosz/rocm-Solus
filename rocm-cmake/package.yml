@@ -1,8 +1,8 @@
 name       : rocm-cmake
-version    : 5.1.3
-release    : 1
+version    : 5.4.1
+release    : 2
 source     :
-    - https://github.com/RadeonOpenCompute/rocm-cmake/archive/refs/tags/rocm-5.1.3.tar.gz : 19b2da0d56300aab454655b57435ab3ed9e101ecb96561336ea8865bbd993c23
+    - https://github.com/RadeonOpenCompute/rocm-cmake/archive/refs/tags/rocm-5.4.1.tar.gz : fdcc97db4c7d418e2b99182947d2e1da2715602eb9f140f6e42c7c056c37aaed
 license    : MIT
 component  : programming.devel
 homepage   : https://github.com/RadeonOpenCompute
