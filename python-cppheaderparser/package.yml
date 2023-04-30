@@ -13,6 +13,8 @@ builddeps  :
     - python-installer
     - python-packaging
     - python-wheel
+rundeps    :
+    - python-ply
 build      : |
     %python3_setup
 install    : |

@@ -1,0 +1,190 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index f425504d..49c27302 100755
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -20,6 +20,11 @@
+ cmake_minimum_required(VERSION 3.16.8)
+ project(hip)
+ 
++# Set default libdir to be "lib" for ROCm, distros will override this anyway:
++set(CMAKE_INSTALL_LIBDIR "lib" CACHE STRING "Library install directory")
++
++include(GNUInstallDirs)
++
+ # sample command for hip-rocclr runtime, you'll need to have rocclr built
+ # ROCM_PATH is the path where ROCM is installed
+ #  For shared lib of hip-rocclr runtime
+@@ -39,7 +44,7 @@ list(APPEND CMAKE_MODULE_PATH ${HIP_COMMON_DIR}/cmake)
+ 
+ # required to add the right link to libhsa-runtime in install/lib path
+ # CMAKE_PREFIX_PATH is used as rpath to search for libs outside HIP
+-set(CMAKE_INSTALL_RPATH "${CMAKE_PREFIX_PATH}/lib")
++set(CMAKE_INSTALL_RPATH "${CMAKE_INSTALL_FULL_LIBDIR}")
+ set(CMAKE_INSTALL_RPATH_USE_LINK_PATH TRUE)
+ 
+ #############################
+@@ -271,9 +276,9 @@ endif (NOT CPACK_SET_DESTDIR)
+ #############################
+ # Build steps
+ #############################
+-set(BIN_INSTALL_DIR ${CMAKE_INSTALL_PREFIX}/bin)
+-set(LIB_INSTALL_DIR ${CMAKE_INSTALL_PREFIX}/lib)
+-set(INCLUDE_INSTALL_DIR ${CMAKE_INSTALL_PREFIX}/include)
++set(BIN_INSTALL_DIR ${CMAKE_INSTALL_FULL_BINDIR})
++set(LIB_INSTALL_DIR ${CMAKE_INSTALL_FULL_LIBDIR})
++set(INCLUDE_INSTALL_DIR ${CMAKE_INSTALL_FULL_INCLUDEDIR})
+ set(CONFIG_PACKAGE_INSTALL_DIR ${LIB_INSTALL_DIR}/cmake/hip)
+ set(CONFIG_LANG_PACKAGE_INSTALL_DIR ${LIB_INSTALL_DIR}/cmake/hip-lang)
+ 
+@@ -321,10 +326,10 @@ endif()
+ #############################
+ 
+ # Install .hipInfo
+-install(FILES ${PROJECT_BINARY_DIR}/.hipInfo DESTINATION lib)
++install(FILES ${PROJECT_BINARY_DIR}/.hipInfo DESTINATION ${CMAKE_INSTALL_LIBDIR})
+ 
+ # Install .hipVersion
+-install(FILES ${PROJECT_BINARY_DIR}/.hipVersion DESTINATION bin)
++install(FILES ${PROJECT_BINARY_DIR}/.hipVersion DESTINATION ${CMAKE_INSTALL_BINDIR})
+ 
+ # Install src, bin, include & cmake if necessary
+ execute_process(COMMAND test ${CMAKE_INSTALL_PREFIX} -ef ${CMAKE_CURRENT_SOURCE_DIR}
+@@ -358,7 +363,7 @@ if(NOT ${INSTALL_SOURCE} EQUAL 0)
+     endif()
+ 
+     install(DIRECTORY include DESTINATION .)
+-    install(DIRECTORY ${HIP_COMMON_INCLUDE_DIR}/hip/ DESTINATION include/hip/)
++	install(DIRECTORY ${HIP_COMMON_INCLUDE_DIR}/hip/ DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/hip/)
+     if(WIN32)
+       install(DIRECTORY ${HIP_COMMON_DIR}/cmake DESTINATION .)
+     else()
+@@ -370,11 +375,11 @@ endif()
+ # FIXME: Associate with individual targets.
+ if(HIP_PLATFORM STREQUAL "amd")
+ install(FILES ${PROJECT_BINARY_DIR}/include/hip/amd_detail/hip_prof_str.h
+-        DESTINATION include/hip/amd_detail)
++        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/hip/amd_detail)
+ install(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/bin DESTINATION . USE_SOURCE_PERMISSIONS)
+ endif()
+ install(FILES ${PROJECT_BINARY_DIR}/include/hip/hip_version.h
+-        DESTINATION include/hip)
++        DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/hip)
+ 
+ if (NOT ${HIPCC_BIN_DIR} STREQUAL "")
+   file(TO_CMAKE_PATH "${HIPCC_BIN_DIR}" HIPCC_BIN_DIR)
+diff --git a/packaging/CMakeLists.txt b/packaging/CMakeLists.txt
+index f325a9b4..9467aab7 100644
+--- a/packaging/CMakeLists.txt
++++ b/packaging/CMakeLists.txt
+@@ -41,28 +41,28 @@ set(CPACK_RPM_PACKAGE_LICENSE "MIT")
+ #Begin binary files install
+ if(HIP_PLATFORM STREQUAL "amd" )
+    if(BUILD_SHARED_LIBS)
+-      install(FILES ${CMAKE_BINARY_DIR}/lib/libamdhip64.so DESTINATION lib COMPONENT binary)
+-      install(FILES ${CMAKE_BINARY_DIR}/lib/libamdhip64.so.${HIP_LIB_VERSION_MAJOR} DESTINATION lib COMPONENT binary)
+-      install(FILES ${CMAKE_BINARY_DIR}/lib/libamdhip64.so.${HIP_LIB_VERSION_STRING} DESTINATION lib COMPONENT binary)
+-      install(FILES ${CMAKE_BINARY_DIR}/lib/libhiprtc.so DESTINATION lib COMPONENT binary)
+-      install(FILES ${CMAKE_BINARY_DIR}/lib/libhiprtc.so.${HIP_LIB_VERSION_MAJOR} DESTINATION lib COMPONENT binary)
+-      install(FILES ${CMAKE_BINARY_DIR}/lib/libhiprtc.so.${HIP_LIB_VERSION_STRING} DESTINATION lib COMPONENT binary)
+-      install(FILES ${CMAKE_BINARY_DIR}/lib/libhiprtc-builtins.so DESTINATION lib COMPONENT binary)
+-      install(FILES ${CMAKE_BINARY_DIR}/lib/libhiprtc-builtins.so.${HIP_LIB_VERSION_MAJOR} DESTINATION lib COMPONENT binary)
+-      install(FILES ${CMAKE_BINARY_DIR}/lib/libhiprtc-builtins.so.${HIP_LIB_VERSION_STRING} DESTINATION lib COMPONENT binary)
++      install(FILES ${CMAKE_BINARY_DIR}/lib/libamdhip64.so DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT binary)
++      install(FILES ${CMAKE_BINARY_DIR}/lib/libamdhip64.so.${HIP_LIB_VERSION_MAJOR} DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT binary)
++      install(FILES ${CMAKE_BINARY_DIR}/lib/libamdhip64.so.${HIP_LIB_VERSION_STRING} DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT binary)
++      install(FILES ${CMAKE_BINARY_DIR}/lib/libhiprtc.so DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT binary)
++      install(FILES ${CMAKE_BINARY_DIR}/lib/libhiprtc.so.${HIP_LIB_VERSION_MAJOR} DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT binary)
++      install(FILES ${CMAKE_BINARY_DIR}/lib/libhiprtc.so.${HIP_LIB_VERSION_STRING} DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT binary)
++      install(FILES ${CMAKE_BINARY_DIR}/lib/libhiprtc-builtins.so DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT binary)
++      install(FILES ${CMAKE_BINARY_DIR}/lib/libhiprtc-builtins.so.${HIP_LIB_VERSION_MAJOR} DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT binary)
++      install(FILES ${CMAKE_BINARY_DIR}/lib/libhiprtc-builtins.so.${HIP_LIB_VERSION_STRING} DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT binary)
+    else()
+-      install(FILES ${CMAKE_BINARY_DIR}/lib/libamdhip64.a DESTINATION lib COMPONENT binary)
++      install(FILES ${CMAKE_BINARY_DIR}/lib/libamdhip64.a DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT binary)
+    endif()#End BUILD_SHARED_LIBS
+ 
+ #TODO:This do not belong in BINARY package.
+ #Keeping it as is for now
+-install(FILES ${CMAKE_BINARY_DIR}/.hipInfo DESTINATION lib COMPONENT binary)
+-install(FILES ${CMAKE_BINARY_DIR}/hip-config.cmake ${CMAKE_BINARY_DIR}/hip-config-version.cmake DESTINATION lib/cmake/hip COMPONENT binary)
+-install ( EXPORT hip-targets  FILE hip-targets.cmake NAMESPACE hip:: DESTINATION lib/cmake/hip  COMPONENT binary)
++install(FILES ${CMAKE_BINARY_DIR}/.hipInfo DESTINATION ${CMAKE_INSTALL_LIBDIR} COMPONENT binary)
++install(FILES ${CMAKE_BINARY_DIR}/hip-config.cmake ${CMAKE_BINARY_DIR}/hip-config-version.cmake DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/hip COMPONENT binary)
++install ( EXPORT hip-targets  FILE hip-targets.cmake NAMESPACE hip:: DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/hip  COMPONENT binary)
+ 
+-install(FILES ${CMAKE_BINARY_DIR}/src/hip-lang-config.cmake ${CMAKE_BINARY_DIR}/src/hip-lang-config-version.cmake DESTINATION lib/cmake/hip-lang COMPONENT binary)
++install(FILES ${CMAKE_BINARY_DIR}/src/hip-lang-config.cmake ${CMAKE_BINARY_DIR}/src/hip-lang-config-version.cmake DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/hip-lang COMPONENT binary)
+ 
+-install ( EXPORT hip-lang-targets  FILE hip-lang-targets.cmake NAMESPACE hip-lang:: DESTINATION lib/cmake/hip-lang  COMPONENT binary)
++install ( EXPORT hip-lang-targets  FILE hip-lang-targets.cmake NAMESPACE hip-lang:: DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/hip-lang  COMPONENT binary)
+ 
+ endif()#End HIP_PLATFORM = "amd"
+ #End bianry files install
+@@ -91,7 +91,7 @@ install(FILES ${CMAKE_BINARY_DIR}/include/hip/amd_detail/hip_prof_str.h
+ install(FILES ${CMAKE_BINARY_DIR}/include/hip/hip_version.h
+         DESTINATION include/hip COMPONENT dev)
+ install(FILES ${CMAKE_BINARY_DIR}/.hipVersion DESTINATION bin COMPONENT dev)
+-install(DIRECTORY ${HIP_COMMON_DIR}/cmake/ DESTINATION lib/cmake/hip COMPONENT dev)
++install(DIRECTORY ${HIP_COMMON_DIR}/cmake/ DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/hip COMPONENT dev)
+ #End dev files install
+ 
+ #Begin doc files install
+diff --git a/src/CMakeLists.txt b/src/CMakeLists.txt
+index f81296d3..e1abb533 100644
+--- a/src/CMakeLists.txt
++++ b/src/CMakeLists.txt
+@@ -187,7 +187,7 @@ if(__HIP_ENABLE_PCH)
+   endif()
+ 
+   target_compile_definitions(amdhip64 PRIVATE __HIP_ENABLE_PCH)
+-  target_sources(amdhip64 PRIVATE ${CMAKE_BINARY_DIR}/hip_pch.o)
++  target_sources(amdhip64 PRIVATE ${PROJECT_SOURCE_DIR}/hip_pch.o)
+ endif()
+ 
+ set(HIPRTC_OBJECTS)
+@@ -201,7 +201,7 @@ if(NOT WIN32)
+     add_dependencies(amdhip64 hiprtc-builtins)
+     INSTALL(TARGETS hiprtc-builtins
+       RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+-      LIBRARY DESTINATION lib
++      LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+       ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR})
+   endif()
+ endif()
+@@ -270,7 +270,7 @@ target_link_libraries(device INTERFACE host)
+ INSTALL(TARGETS amdhip64 host device
+   EXPORT hip-targets
+   RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+-  LIBRARY DESTINATION lib
++  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+   ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+   PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+ INSTALL(EXPORT hip-targets DESTINATION ${CONFIG_PACKAGE_INSTALL_DIR} NAMESPACE hip::)
+@@ -278,7 +278,7 @@ INSTALL(EXPORT hip-targets DESTINATION ${CONFIG_PACKAGE_INSTALL_DIR} NAMESPACE h
+ INSTALL(TARGETS amdhip64 host device
+   EXPORT hip-lang-targets
+   RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+-  LIBRARY DESTINATION lib
++  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+   ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+   PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
+ INSTALL(EXPORT hip-lang-targets DESTINATION ${CONFIG_LANG_PACKAGE_INSTALL_DIR} NAMESPACE hip-lang::)
+diff --git a/src/hiprtc/CMakeLists.txt b/src/hiprtc/CMakeLists.txt
+index c37f6127..0fd3f6b4 100644
+--- a/src/hiprtc/CMakeLists.txt
++++ b/src/hiprtc/CMakeLists.txt
+@@ -185,12 +185,12 @@ set(HIPRTC_OBJECTS ${HIPRTC_OBJECTS} PARENT_SCOPE)
+ add_dependencies(hiprtc hiprtc-builtins)
+ install(TARGETS hiprtc-builtins
+   RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+-  LIBRARY DESTINATION lib
++  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+   ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR})
+ 
+ INSTALL(TARGETS hiprtc
+   EXPORT hiprtc-targets
+   RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}
+-  LIBRARY DESTINATION lib
++  LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
+   ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}
+   PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
