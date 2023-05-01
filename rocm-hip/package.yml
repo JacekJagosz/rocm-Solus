@@ -53,6 +53,7 @@ setup      : |
 
     pushd $ROCCLR_DIR
         %patch -p1 < $pkgfiles/0001-enable-gfx800.patch
+        %patch -p1 < $pkgfiles/0022-improve-rocclr-isa-compatibility-check.patch
     popd
 
     pushd $HIP_DIR
@@ -61,9 +62,8 @@ setup      : |
         %patch -p1 < $pkgfiles/0007-isystem-removal.patch
     popd
 
-    ls -ltra
     cd $HIPAMD_DIR
-
+        %patch -p1 < $pkgfiles/0023-extend-hip-isa-compatibility-check.patch
         # HIP requires RPATH
         sed -i "/CMAKE_INSTALL_RPATH/d" CMakeLists.txt
 
