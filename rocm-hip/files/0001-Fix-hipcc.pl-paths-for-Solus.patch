@@ -1,0 +1,39 @@
+From a2f8d2d498990cbde80599f75d5935f06504f178 Mon Sep 17 00:00:00 2001
+From: Jacek Jagosz <jacek.jagosz@outlook.com>
+Date: Mon, 1 May 2023 01:18:12 +0200
+Subject: [PATCH] Fix hipcc.pl paths for Solus
+
+---
+ bin/hipcc.pl | 9 ++-------
+ 1 file changed, 2 insertions(+), 7 deletions(-)
+
+diff --git a/bin/hipcc.pl b/bin/hipcc.pl
+index 645ae62d..0543c1fb 100755
+--- a/bin/hipcc.pl
++++ b/bin/hipcc.pl
+@@ -612,7 +612,7 @@ if($HIP_PLATFORM eq "amd"){
+             $targetsStr = $ENV{HCC_AMDGPU_TARGET};
+         } elsif (not $isWindows) {
+             # Else try using rocm_agent_enumerator
+-            $ROCM_AGENT_ENUM = "${ROCM_PATH}/bin/rocm_agent_enumerator";
++            $ROCM_AGENT_ENUM = "/usr/bin/rocm_agent_enumerator";
+             $targetsStr = `${ROCM_AGENT_ENUM} -t GPU`;
+             $targetsStr =~ s/\n/,/g;
+         }
+@@ -716,12 +716,7 @@ if ($HIP_PLATFORM eq "amd") {
+         $toolArgs = ${toolArgs} . " -Wl,--enable-new-dtags -Wl,-rpath=$HIP_LIB_PATH:$ROCM_PATH/lib -lamdhip64 ";
+       }
+       # To support __fp16 and _Float16, explicitly link with compiler-rt
+-      $HIP_CLANG_BUILTIN_LIB="$HIP_CLANG_PATH/../lib/clang/$HIP_CLANG_VERSION/lib/$HIP_CLANG_TARGET/libclang_rt.builtins.a";
+-      if (-e $HIP_CLANG_BUILTIN_LIB) {
+-        $toolArgs .= " -L$HIP_CLANG_PATH/../lib/clang/$HIP_CLANG_VERSION/lib/$HIP_CLANG_TARGET -lclang_rt.builtins "
+-      } else {
+-        $toolArgs .= " -L$HIP_CLANG_PATH/../lib/clang/$HIP_CLANG_VERSION/lib/linux -lclang_rt.builtins-x86_64 "
+-      }
++      $toolArgs .= " -L/usr/lib64/clang/15.0.7/lib/x86_64-solus-linux/ "
+     }
+ }
+ 
+-- 
+2.40.1
+

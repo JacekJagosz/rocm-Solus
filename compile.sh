@@ -2,7 +2,7 @@
 
 set -eox pipefail
 
-order="hsakmt rocm-device-libs rocm-runtime rocm-smi rocm-info rocm-cmake rocm-compiler-support rocm-opencl rocm-hip" #"rocblas miopen rocfft hipfft rocprim hipcub rocprofiler roctracer rocsparse hipsparse rocsolver hipsolver hipblas rocthrust rocrand rccl hipmagma"
+order="hsakmt python-cppheaderparser rocm-cmake rocm-device-libs rocm-compilersupport rocm-runtime rocm-smi rocm-info rocm-opencl rocm-hip" #"rocblas miopen rocfft hipfft rocprim hipcub rocprofiler roctracer rocsparse hipsparse rocsolver hipsolver hipblas rocthrust rocrand rccl hipmagma"
 
 # Check if directory exists
 for pkg in $order; do
@@ -12,7 +12,7 @@ done
 # Build
 for pkg in $order; do
 	pushd $pkg
-	solbuild build -p rocm
+	solbuild build
 	cp *.eopkg ../build
 	chown -R jacek ../build
 	pushd

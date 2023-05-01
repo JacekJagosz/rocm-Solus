@@ -22,13 +22,13 @@ builddeps  :
     - pkgconfig(libhsakmt)
     - pkgconfig(numa)
     - pkgconfig(x11-xcb)
+    - python-cppheaderparser
     - rocminfo
     - rocm-cmake
     - rocm-compilersupport-devel
     - rocm-device-libs-devel
     - rocm-opencl-devel
     - rocm-runtime-devel
-    - python-cppheaderparser
 rundeps    :
     - rocminfo
     - devel:
@@ -53,42 +53,28 @@ setup      : |
 
     pushd $ROCCLR_DIR
         %patch -p1 < $pkgfiles/0001-enable-gfx800.patch
-        # %patch -p1 < $pkgfiles/0001-SWDEV-323669-Fix-linux-arch-detection.patch
-        # echo "set_target_properties(rocclr PROPERTIES VERSION 5.3.3 SOVERSION 5.3)" >> cmake/ROCclr.cmake
-    popd
-
-    pushd $AMDOPENCL_DIR
-        # %patch -p1 < $pkgfiles/0001-SWDEV-321118-Use-GNUInstallDirs.patch
-        # %patch -p1 < $pkgfiles/0002-SWDEV-321116-Allow-disabling-ICD-loader.patch
-        # %patch -p1 < $pkgfiles/0003-SWDEV-321116-Drop-unnecessary-ICD-include.patch
-        # %patch -p1 < $pkgfiles/0004-SWDEV-336248-Don-t-exclude-cl_egl.h-from-install.patch
-        # echo "set_target_properties(cltrace PROPERTIES VERSION 5.3.3 SOVERSION 5.3)" >> tools/cltrace/CMakeLists.txt
-        # ls -d khronos/* | grep -v headers | xargs rm -r
-        # ls -d khronos/headers/* | grep -v opencl2.2 | xargs rm -r
-        # rm -r khronos/headers/*/tests/
     popd
 
     pushd $HIP_DIR
-        # %patch -p1 < $pkgfiles/0007-isystem-removal.patch
-        # %patch -p1 < $pkgfiles/cmake-fix.patch
-        # %patch -p1 < $pkgfiles/0001-remove-failing-cmake-test.patch
+        %patch -p1 < $pkgfiles/0001-remove-failing-cmake-test.patch
+        %patch -p1 < $pkgfiles/0001-Fix-hipcc.pl-paths-for-Solus.patch
+        %patch -p1 < $pkgfiles/0007-isystem-removal.patch
     popd
-    cd hipamd-rocm-%version%
-    %apply_patches
 
+    ls -ltra
     cd $HIPAMD_DIR
 
-    # HIP requires RPATH
-    # sed -i "/CMAKE_INSTALL_RPATH/d" CMakeLists.txt
+        # HIP requires RPATH
+        sed -i "/CMAKE_INSTALL_RPATH/d" CMakeLists.txt
 
-    %cmake -DPROF_API_HEADER_PATH=$ROCTRACER_DIR/inc/ext \
-           -DAMD_OPENCL_PATH=$AMDOPENCL_DIR \
-           -DROCCLR_PATH=$ROCCLR_DIR \
-           -DHIP_COMMON_DIR=$HIP_DIR \
-           -DROCM_PATH=$ROCM_PATH \
-           -DHIP_COMPILER=clang \
-           -DHIP_PLATFORM=amd \
-           -DFILE_REORG_BACKWARD_COMPATIBILITY=OFF \
+        %cmake -DPROF_API_HEADER_PATH=$ROCTRACER_DIR/inc/ext \
+            -DAMD_OPENCL_PATH=$AMDOPENCL_DIR \
+            -DROCCLR_PATH=$ROCCLR_DIR \
+            -DHIP_COMMON_DIR=$HIP_DIR \
+            -DROCM_PATH=$ROCM_PATH \
+            -DHIP_COMPILER=clang \
+            -DHIP_PLATFORM=amd \
+            -DFILE_REORG_BACKWARD_COMPATIBILITY=OFF \
 build      : |
     cd $HIPAMD_DIR
     %make
@@ -96,19 +82,11 @@ install    : |
     cd $HIPAMD_DIR
     %make_install
 
-    # hip installs some cmake modules incorrectly:
-    # mv $installdir/usr/cmake $installdir%libdir%/cmake/Modules
-
-    # # make hip-config.cmake less broken, allowing to build stuff that relies on hip
-    # sed -i 's|${_IMPORT_PREFIX}/../include|${_IMPORT_PREFIX}/include|g' $installdir%libdir%/cmake/hip/hip-config.cmake
-    # sed -i 's|"${ROCM_PATH}/llvm"|"/usr"|g' $installdir%libdir%/cmake/hip/hip-config.cmake
+    # make hip-config.cmake less broken, allowing to build stuff that relies on hip
+    sed -i 's|${_IMPORT_PREFIX}/../include|${_IMPORT_PREFIX}/include|g' $installdir%libdir%/cmake/hip/hip-config.cmake
+    sed -i 's|"${ROCM_PATH}/llvm"|"/usr"|g' $installdir%libdir%/cmake/hip/hip-config.cmake
 
     # https://salsa.debian.org/rocm-team/rocm-hipamd/-/blob/master/debian/patches/0003-hip-config.cmake.patch
-    # sed -i 's|${AMD_DEVICE_LIBS_PREFIX}/lib|${AMD_DEVICE_LIBS_PREFIX}/lib64/amdgcn/bitcode|g' $installdir%libdir%/cmake/hip/hip-config.cmake
-    # sed -i 's|${AMD_DEVICE_LIBS_PREFIX}/lib|${AMD_DEVICE_LIBS_PREFIX}/lib64/amdgcn/bitcode|g' $installdir%libdir%/cmake/hip-lang/hip-lang-config.cmake
+    sed -i 's|${AMD_DEVICE_LIBS_PREFIX}/lib|${AMD_DEVICE_LIBS_PREFIX}/lib64/amdgcn/bitcode|g' $installdir%libdir%/cmake/hip/hip-config.cmake
+    sed -i 's|${AMD_DEVICE_LIBS_PREFIX}/lib|${AMD_DEVICE_LIBS_PREFIX}/lib64/amdgcn/bitcode|g' $installdir%libdir%/cmake/hip-lang/hip-lang-config.cmake
 
-    # # https://github.com/ROCm-Developer-Tools/HIP/issues/2678, removable for 5.3.0
-    # sed -i '/__noinline__/d' $installdir/usr/include/hip/amd_detail/host_defines.h
-    # sed -i '732s|$HIPCC|/usr/lib64/ccache/bin/clang++|' $installdir/usr/bin/hipcc.pl
-
-    sed -i 's|"${ROCM_PATH}/bin/rocm_agent_enumerator"|"/usr/bin/rocm_agent_enumerator"|g' %installroot%/usr/bin/hipcc.pl

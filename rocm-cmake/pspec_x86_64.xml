@@ -44,8 +44,8 @@
     </Package>
     <History>
         <Update release="2">
-            <Date>2023-04-29</Date>
-            <Version>5.4.1</Version>
+            <Date>2023-04-30</Date>
+            <Version>5.3.3</Version>
             <Comment>Packaging update</Comment>
             <Name>Jacek Jagosz</Name>
             <Email>jacek.jagosz@outlook.com</Email>

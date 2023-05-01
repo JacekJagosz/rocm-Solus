@@ -14,8 +14,7 @@ builddeps  :
     - pkgconfig(libpci)
     - pkgconfig(numa)
 setup      : |
-    %cmake_ninja -DBUILD_SHARED_LIBS=ON \
-                 -DFILE_REORG_BACKWARD_COMPATIBILITY=OFF
+    %cmake_ninja -DBUILD_SHARED_LIBS=ON
 build      : |
     %ninja_build
 install    : |

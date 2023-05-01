@@ -57,9 +57,5 @@ install    : |
     mkdir -p $installdir/usr/include/rocm-opencl
     mv $installdir/usr/include/CL $installdir/usr/include/rocm-opencl/CL
 
-    # # CMake excludes installing this for some reason
-    # install -Dm00644 khronos/headers/opencl2.2/CL/cl_egl.h \
-    #     $installdir/usr/include/rocm-opencl/CL
-
     #Avoid file conflicts with clinfo package:
     mv $installdir/usr/bin/clinfo $installdir/usr/bin/rocm-clinfo

@@ -21,7 +21,7 @@ builddeps  :
 setup      : |
     %patch -p1 < $pkgfiles/0001-Use-FHS-compliant-install.patch
     %patch -p1 < $pkgfiles/0001-fix-atomic.fadd.f32.p1.f32.patch
-    %cmake_ninja -DFILE_REORG_BACKWARD_COMPATIBILITY=OFF
+    %cmake_ninja
 build      : |
     %ninja_build
 install    : |
@@ -29,4 +29,6 @@ install    : |
 
     # mv $installdir/usr/amdgcn $installdir/%libdir%/
 check      : |
-    %ninja_check
+    if [ -d /dev/kfd ]; then
+        %ninja_check
+    fi

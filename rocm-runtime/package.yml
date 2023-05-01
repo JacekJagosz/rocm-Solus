@@ -17,9 +17,11 @@ builddeps  :
     - pkgconfig(numa)
     - rocm-device-libs-devel
     - vim
+environment: |
+    export DEVICE_LIB_PATH=/usr/lib64/amdgcn/bitcode
+    export HIP_DEVICE_LIB_PATH=/usr/lib64/amdgcn/bitcode
 setup      : |
-    %cmake_ninja -S src -DBITCODE_DIR="%libdir%/amdgcn/bitcode" \
-                        -DFILE_REORG_BACKWARD_COMPATIBILITY=OFF
+    %cmake_ninja -S src
 build      : |
     %ninja_build
 install    : |
