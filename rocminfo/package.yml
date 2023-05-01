@@ -14,10 +14,7 @@ builddeps  :
     - rocm-cmake
     - rocm-runtime-devel
 setup      : |
-    %cmake_ninja -DROCM_DIR=%PREFIX% \
-                 -DROCRTST_BLD_TYPE="Release" \
-                 -DROCRTST_BLD_BITS=64 \
-                 -DFILE_REORG_BACKWARD_COMPATIBILITY=OFF
+    %cmake_ninja -DROCRTST_BLD_TYPE="Release"
 build      : |
     %ninja_build
 install    : |

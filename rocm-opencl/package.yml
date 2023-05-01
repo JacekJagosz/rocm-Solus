@@ -44,7 +44,6 @@ setup      : |
         -DROCCLR_PATH="%workdir%/ROCclr-rocm-%version%" \
         -DBUILD_ICD=OFF \
         -DROCM_DIR=%PREFIX% \
-        -DUSE_COMGR_LIBRARY=ON \
         -DFILE_REORG_BACKWARD_COMPATIBILITY=OFF \
 build      : |
     %ninja_build
