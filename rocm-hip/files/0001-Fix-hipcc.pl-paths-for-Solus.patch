@@ -20,20 +20,5 @@ index 645ae62d..0543c1fb 100755
              $targetsStr = `${ROCM_AGENT_ENUM} -t GPU`;
              $targetsStr =~ s/\n/,/g;
          }
-@@ -716,12 +716,7 @@ if ($HIP_PLATFORM eq "amd") {
-         $toolArgs = ${toolArgs} . " -Wl,--enable-new-dtags -Wl,-rpath=$HIP_LIB_PATH:$ROCM_PATH/lib -lamdhip64 ";
-       }
-       # To support __fp16 and _Float16, explicitly link with compiler-rt
--      $HIP_CLANG_BUILTIN_LIB="$HIP_CLANG_PATH/../lib/clang/$HIP_CLANG_VERSION/lib/$HIP_CLANG_TARGET/libclang_rt.builtins.a";
--      if (-e $HIP_CLANG_BUILTIN_LIB) {
--        $toolArgs .= " -L$HIP_CLANG_PATH/../lib/clang/$HIP_CLANG_VERSION/lib/$HIP_CLANG_TARGET -lclang_rt.builtins "
--      } else {
--        $toolArgs .= " -L$HIP_CLANG_PATH/../lib/clang/$HIP_CLANG_VERSION/lib/linux -lclang_rt.builtins-x86_64 "
--      }
-+      $toolArgs .= " -L/usr/lib64/clang/15.0.7/lib/x86_64-solus-linux/ "
-     }
- }
- 
--- 
 2.40.1
 

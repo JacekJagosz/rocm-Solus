@@ -59,6 +59,7 @@ setup      : |
     pushd $HIP_DIR
         %patch -p1 < $pkgfiles/0001-remove-failing-cmake-test.patch
         %patch -p1 < $pkgfiles/0001-Fix-hipcc.pl-paths-for-Solus.patch
+        %patch -p1 < $pkgfiles/0001-Fix-chomp-return.patch
         %patch -p1 < $pkgfiles/0007-isystem-removal.patch
     popd
 
