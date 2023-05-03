@@ -16,6 +16,14 @@ builddeps  :
 setup      : |
     %apply_patches
 
+    ##Fix issue wit HIP, where compilation flags are incorrect, see issue:
+    #https://github.com/RadeonOpenCompute/ROCm-CompilerSupport/issues/49
+    #Remove redundant includes:
+    sed -i '/Args.push_back(HIPIncludePath/,+1d' lib/comgr/src/comgr-compiler.cpp
+    sed -i '/Args.push_back(ROCMIncludePath/,+1d' lib/comgr/src/comgr-compiler.cpp
+    #Source hard codes the libdir too:
+    sed -i 's/lib\(\/clang\)/%{_lib}\1/' lib/comgr/src/comgr-compiler.cpp
+
     %cmake -S lib/comgr -DBUILD_TESTING=ON \
                         -DFILE_REORG_BACKWARD_COMPATIBILITY=OFF
 build      : |
