@@ -16,17 +16,8 @@ builddeps  :
 setup      : |
     %apply_patches
 
-    sed -i -e "/compile_test/d" \
-           -e "/compile_minimal_test/d" \
-           -e "/compile_device_libs_test/d" \
-           -e "/compile_source_with_device_libs_to_bc_test/d" \
-           lib/comgr/test/CMakeLists.txt
-
-    sed -i '/Args.push_back(HIPIncludePath/,+1d' lib/comgr/src/comgr-compiler.cpp
-    sed -i '/Args.push_back(ROCMIncludePath/,+1d' lib/comgr/src/comgr-compiler.cpp
-    sed -i 's/lib\(\/clang\)/%{_lib}\1/' lib/comgr/src/comgr-compiler.cpp
-
-    %cmake -S lib/comgr -DBUILD_TESTING=ON
+    %cmake -S lib/comgr -DBUILD_TESTING=ON \
+                        -DFILE_REORG_BACKWARD_COMPATIBILITY=OFF
 build      : |
     %make
 install    : |
